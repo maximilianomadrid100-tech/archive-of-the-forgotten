@@ -1,0 +1,2065 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#060b1c">
+
+  <meta
+    name="description"
+    content="Archive of the Forgotten: an interactive space museum exploring the traces left behind by missions to the Moon and Mars."
+  >
+
+  <title>ARCHIVE OF THE FORGOTTEN | NASA Space Apps</title>
+
+  <!-- ORIGINAL FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- MAIN STYLESHEET -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ====================================== -->
+  <!-- ORIGINAL SPACE BACKGROUND -->
+  <!-- ====================================== -->
+
+  <div id="fondoEspacial" aria-hidden="true">
+    <div class="estrellas estrellas-1"></div>
+    <div class="estrellas estrellas-2"></div>
+    <div class="estrellas estrellas-3"></div>
+    <div id="nebulosa"></div>
+  </div>
+
+
+  <!-- ====================================== -->
+  <!-- SPACESHIP AND RATATOPO SCENE -->
+  <!-- ====================================== -->
+
+  <div id="escena3d" class="escena-nave">
+
+    <div id="interfazNave" class="interfaz-nave">
+
+      <div class="identificacion-nave">
+        <span class="indicador-luz"></span>
+        EXPLORATION SYSTEM ACTIVE
+      </div>
+
+      <div class="datos-nave">
+        <span>SECTOR: SOL-01</span>
+
+        <span id="destinoNave">
+          DESTINATION: INTERPLANETARY ARCHIVE
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <main id="aplicacion">
+
+    <!-- ====================================== -->
+    <!-- HOME SCREEN -->
+    <!-- ====================================== -->
+
+    <section id="portada" class="pantalla activa">
+
+      <div class="contenido-portada">
+
+        <div class="etiqueta-superior">
+          NASA SPACE APPS CHALLENGE
+        </div>
+
+        <p class="subtitulo-portada">
+          A JOURNEY THROUGH THE HISTORY OF SPACE EXPLORATION
+        </p>
+
+        <h1>
+          ARCHIVE OF
+          <span>THE FORGOTTEN</span>
+        </h1>
+
+        <p class="descripcion-portada">
+          Some explorers returned.
+          Others remained on distant worlds.
+          But none of them should be forgotten.
+        </p>
+
+        <div class="destinos-portada">
+          <span>THE MOON</span>
+          <span class="separador-destinos">✦</span>
+          <span>MARS</span>
+        </div>
+
+        <button
+          id="botonInicio"
+          class="boton-principal"
+          type="button"
+        >
+          START EXPLORING ✦
+        </button>
+
+        <p class="instruccion-portada">
+          BOARD RATATOPO'S SPACESHIP AND DISCOVER
+          THE STORIES PRESERVED BY SPACE
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ====================================== -->
+    <!-- HYPERSPACE TRANSITION -->
+    <!-- ====================================== -->
+
+    <section id="hiperespacio" class="pantalla">
+
+      <div class="contenido-hiperespacio">
+
+        <p class="texto-sistema">
+          NAVIGATION SYSTEM
+        </p>
+
+        <h2>
+          INITIATING HYPERSPACE JUMP
+        </h2>
+
+        <div class="circulo-carga">
+          <div class="circulo-interior"></div>
+        </div>
+
+        <p id="mensajeViaje" aria-live="polite">
+          ESTABLISHING CONNECTION WITH THE ARCHIVE...
+        </p>
+
+        <div class="datos-viaje">
+          <span>HYPERDRIVE: ACTIVE</span>
+          <span>CREW MEMBER: RATATOPO</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ====================================== -->
+    <!-- MAIN MUSEUM -->
+    <!-- ====================================== -->
+
+    <section id="museo" class="pantalla">
+
+      <!-- MUSEUM HEADER -->
+
+      <header class="encabezado-museo">
+
+        <div class="logo-museo">
+          <span class="logo-icono">✦</span>
+          <span>ARCHIVE OF THE FORGOTTEN</span>
+        </div>
+
+        <div class="estado-archivo">
+          <span class="indicador-luz"></span>
+          ARCHIVE CONNECTED
+        </div>
+
+      </header>
+
+
+      <!-- ====================================== -->
+      <!-- MUSEUM NAVIGATION -->
+      <!-- ====================================== -->
+
+      <nav
+        class="navegacion-museo"
+        aria-label="Main navigation"
+      >
+
+        <button
+          type="button"
+          data-ir="seleccionMundos"
+        >
+          EXPLORE WORLDS
+        </button>
+
+        <button
+          type="button"
+          data-ir="lineasTiempo"
+        >
+          TIMELINES
+        </button>
+
+        <button
+          type="button"
+          data-ir="comparacionMundos"
+        >
+          COMPARISON
+        </button>
+
+        <button
+          type="button"
+          data-ir="cuestionario"
+        >
+          CHALLENGE
+        </button>
+
+      </nav>
+
+
+      <!-- ====================================== -->
+      <!-- MUSEUM WELCOME -->
+      <!-- ====================================== -->
+
+      <div id="bienvenidaMuseo" class="bienvenida-museo">
+
+        <p class="etiqueta-superior">
+          INTERPLANETARY MEMORY CENTER
+        </p>
+
+        <h2>
+          THEY ARE NOT LOST.
+          <span>
+            THEY ARE WAITING TO BE REMEMBERED.
+          </span>
+        </h2>
+
+        <p>
+          Explore the traces of space missions,
+          discover their stories, and learn about
+          the objects that remain on other worlds.
+        </p>
+
+      </div>
+
+
+      <!-- ====================================== -->
+      <!-- EXPLORATION PROGRESS -->
+      <!-- ====================================== -->
+
+      <section
+        id="progresoExploracion"
+        class="progreso-exploracion"
+      >
+
+        <div class="encabezado-progreso">
+
+          <span>
+            EXPLORATION PROGRESS
+          </span>
+
+          <strong id="porcentajeProgreso">
+            0%
+          </strong>
+
+        </div>
+
+        <div
+          class="barra-progreso"
+          role="progressbar"
+          aria-label="Exploration progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+        >
+
+          <div id="rellenoProgreso"></div>
+
+        </div>
+
+        <p id="textoProgreso">
+          Discover the objects in the archive
+          to begin your exploration.
+        </p>
+
+        <p class="leyenda-progreso">
+          90% DISCOVERIES · 10% QUIZ
+        </p>
+
+      </section>
+
+
+      <!-- ====================================== -->
+      <!-- WORLD SELECTION -->
+      <!-- ====================================== -->
+
+      <section
+        id="seleccionMundos"
+        class="seleccion-mundos"
+      >
+
+        <div class="titulo-seccion">
+
+          <p>
+            CHOOSE YOUR DESTINATION
+          </p>
+
+          <h2>
+            TWO WORLDS, COUNTLESS STORIES
+          </h2>
+
+        </div>
+
+
+        <div class="tarjetas-mundos">
+
+          <!-- ================================== -->
+          <!-- THE MOON -->
+          <!-- ================================== -->
+
+          <article class="tarjeta-mundo tarjeta-luna">
+
+            <div class="imagen-mundo">
+              <div class="representacion-luna"></div>
+            </div>
+
+            <div class="contenido-tarjeta">
+
+              <span class="numero-mundo">
+                DESTINATION 01
+              </span>
+
+              <h3>THE MOON</h3>
+
+              <p>
+                Human footprints, lunar rovers,
+                landing modules, and scientific
+                instruments that remain on
+                our natural satellite.
+              </p>
+
+              <button
+                type="button"
+                class="boton-explorar"
+                data-ir="vistaLuna"
+              >
+                EXPLORE THE MOON →
+              </button>
+
+              <button
+                type="button"
+                class="boton-secundario"
+                data-ir="lineasTiempo"
+                data-destino-tiempo="luna"
+              >
+                VIEW LUNAR HISTORY
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- ================================== -->
+          <!-- MARS -->
+          <!-- ================================== -->
+
+          <article class="tarjeta-mundo tarjeta-marte">
+
+            <div class="imagen-mundo">
+              <div class="representacion-marte"></div>
+            </div>
+
+            <div class="contenido-tarjeta">
+
+              <span class="numero-mundo">
+                DESTINATION 02
+              </span>
+
+              <h3>MARS</h3>
+
+              <p>
+                Rovers, landers, helicopters,
+                and probes that explored
+                the Red Planet.
+              </p>
+
+              <button
+                type="button"
+                class="boton-explorar"
+                data-ir="vistaMarte"
+              >
+                EXPLORE MARS →
+              </button>
+
+              <button
+                type="button"
+                class="boton-secundario"
+                data-ir="lineasTiempo"
+                data-destino-tiempo="marte"
+              >
+                VIEW MARTIAN HISTORY
+              </button>
+
+            </div>
+
+          </article>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- THE STORY BEHIND THE ARCHIVE -->
+        <!-- ================================== -->
+
+        <div class="introduccion-historias">
+
+          <div class="titulo-seccion">
+
+            <p>
+              EVERY OBJECT TELLS A STORY
+            </p>
+
+            <h2>
+              WHAT DOES IT MEAN TO LEAVE SOMETHING BEHIND?
+            </h2>
+
+          </div>
+
+
+          <div class="pasos-exploracion">
+
+            <!-- STEP 01 -->
+
+            <article class="paso-exploracion">
+
+              <span>
+                01 · LAUNCH
+              </span>
+
+              <h3>
+                WE SEND EXPLORERS
+              </h3>
+
+              <p>
+                Astronauts and robots travel
+                to other worlds to investigate
+                the unknown.
+              </p>
+
+            </article>
+
+
+            <!-- STEP 02 -->
+
+            <article class="paso-exploracion">
+
+              <span>
+                02 · MISSION
+              </span>
+
+              <h3>
+                THEY MAKE NEW DISCOVERIES
+              </h3>
+
+              <p>
+                Their instruments record images,
+                rocks, temperatures,
+                and movements.
+              </p>
+
+            </article>
+
+
+            <!-- STEP 03 -->
+
+            <article class="paso-exploracion">
+
+              <span>
+                03 · LEGACY
+              </span>
+
+              <h3>
+                THEY BECOME PART OF HISTORY
+              </h3>
+
+              <p>
+                When their missions end,
+                many remain in the places
+                they once explored.
+              </p>
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ====================================== -->
+      <!-- END OF PART 1 -->
+      <!-- ====================================== -->
+
+      <!--
+        CONTINUE WITH PART 2 HERE.
+
+        DO NOT CLOSE:
+        - section#museo
+        - main#aplicacion
+        - body
+        - html
+      -->
+
+      <!-- ====================================== -->
+      <!-- MOON EXPLORATION -->
+      <!-- ====================================== -->
+
+      <section
+        id="vistaLuna"
+        class="vista-mundo vista-luna"
+        hidden
+      >
+
+        <button
+          type="button"
+          class="boton-regresar"
+          data-ir="seleccionMundos"
+        >
+          ← BACK TO WORLD SELECTION
+        </button>
+
+        <div class="encabezado-mundo">
+
+          <p>DESTINATION 01 · EARTH'S NATURAL SATELLITE</p>
+
+          <h2>EXPLORE THE MOON</h2>
+
+          <p>
+            Discover the spacecraft, scientific instruments,
+            lunar vehicles, and historic landing sites that
+            remain on the Moon.
+          </p>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- INTERACTIVE 3D MOON -->
+        <!-- ================================== -->
+
+        <div class="visor-planeta">
+
+          <div class="informacion-visor">
+
+            <span>INTERACTIVE LUNAR EXPLORATION</span>
+
+            <span>3D VIEW · MOON</span>
+
+          </div>
+
+          <div
+            id="contenedorLuna"
+            class="contenedor-planeta"
+          >
+
+            <div
+              id="luna3d"
+              class="planeta-3d"
+              aria-label="Interactive three-dimensional model of the Moon"
+            ></div>
+
+          </div>
+
+
+          <!-- MOON CONTROLS -->
+
+          <div class="controles-planeta">
+
+            <button
+              type="button"
+              id="rotarLunaIzquierda"
+              aria-label="Rotate the Moon to the left"
+            >
+              ↶ ROTATE LEFT
+            </button>
+
+            <button
+              type="button"
+              id="rotarLunaDerecha"
+              aria-label="Rotate the Moon to the right"
+            >
+              ROTATE RIGHT ↷
+            </button>
+
+            <button
+              type="button"
+              id="acercarLuna"
+              aria-label="Zoom in on the Moon"
+            >
+              + ZOOM IN
+            </button>
+
+            <button
+              type="button"
+              id="alejarLuna"
+              aria-label="Zoom out from the Moon"
+            >
+              − ZOOM OUT
+            </button>
+
+            <button
+              type="button"
+              id="reiniciarLuna"
+            >
+              RESET VIEW
+            </button>
+
+          </div>
+
+          <p class="instruccion-visor">
+            DRAG TO ROTATE · SCROLL TO ZOOM · SELECT
+            A HISTORICAL MARKER TO EXPLORE
+          </p>
+
+          <p class="credito-textura">
+            Planetary visualization for educational exploration.
+          </p>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- LUNAR HISTORICAL MARKERS -->
+        <!-- ================================== -->
+
+        <div class="seccion-marcadores">
+
+          <h3>HISTORICAL LUNAR MARKERS</h3>
+
+          <p>
+            Explore the locations associated with
+            missions that helped humanity understand
+            the Moon.
+          </p>
+
+          <div
+            id="marcadoresLuna"
+            class="marcadores-planeta"
+            aria-label="Historical markers on the Moon"
+          ></div>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- LUNAR TIMELINE ACCESS -->
+        <!-- ================================== -->
+
+        <div class="acceso-cronologia">
+
+          <p>EXPLORE THE PAST</p>
+
+          <h3>
+            FOLLOW THE HISTORY OF LUNAR EXPLORATION
+          </h3>
+
+          <button
+            type="button"
+            class="boton-secundario"
+            data-ir="lineasTiempo"
+            data-destino-tiempo="luna"
+          >
+            VIEW LUNAR TIMELINE →
+          </button>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- LUNAR ARTIFACT COLLECTION -->
+        <!-- ================================== -->
+
+        <div class="archivo-objetos">
+
+          <div class="titulo-seccion">
+
+            <p>THE LUNAR ARCHIVE</p>
+
+            <h2>12 HISTORICAL OBJECTS ON THE MOON</h2>
+
+            <p>
+              Each object represents a chapter in
+              the history of lunar exploration.
+              Open its historical record to discover
+              the mission, photographs, and Ratatopo's comic.
+            </p>
+
+          </div>
+
+          <p class="descripcion-coleccion">
+            SELECT AN OBJECT TO OPEN ITS HISTORICAL RECORD.
+          </p>
+
+          <!--
+            These 12 cards are generated automatically
+            by script.js using the ARCHIVO data.
+          -->
+
+          <div
+            id="objetosLuna"
+            class="rejilla-objetos"
+            aria-label="Collection of 12 lunar objects"
+          ></div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ====================================== -->
+      <!-- MARS EXPLORATION -->
+      <!-- ====================================== -->
+
+      <section
+        id="vistaMarte"
+        class="vista-mundo vista-marte"
+        hidden
+      >
+
+        <button
+          type="button"
+          class="boton-regresar"
+          data-ir="seleccionMundos"
+        >
+          ← BACK TO WORLD SELECTION
+        </button>
+
+        <div class="encabezado-mundo">
+
+          <p>DESTINATION 02 · THE RED PLANET</p>
+
+          <h2>EXPLORE MARS</h2>
+
+          <p>
+            Travel across the Red Planet and discover
+            the robotic explorers, landers, scientific
+            instruments, and aircraft that have
+            transformed our understanding of Mars.
+          </p>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- INTERACTIVE 3D MARS -->
+        <!-- ================================== -->
+
+        <div class="visor-planeta">
+
+          <div class="informacion-visor">
+
+            <span>INTERACTIVE MARTIAN EXPLORATION</span>
+
+            <span>3D VIEW · MARS</span>
+
+          </div>
+
+          <div
+            id="contenedorMarte"
+            class="contenedor-planeta"
+          >
+
+            <div
+              id="marte3d"
+              class="planeta-3d"
+              aria-label="Interactive three-dimensional model of Mars"
+            ></div>
+
+          </div>
+
+
+          <!-- MARS CONTROLS -->
+
+          <div class="controles-planeta">
+
+            <button
+              type="button"
+              id="rotarMarteIzquierda"
+              aria-label="Rotate Mars to the left"
+            >
+              ↶ ROTATE LEFT
+            </button>
+
+            <button
+              type="button"
+              id="rotarMarteDerecha"
+              aria-label="Rotate Mars to the right"
+            >
+              ROTATE RIGHT ↷
+            </button>
+
+            <button
+              type="button"
+              id="acercarMarte"
+              aria-label="Zoom in on Mars"
+            >
+              + ZOOM IN
+            </button>
+
+            <button
+              type="button"
+              id="alejarMarte"
+              aria-label="Zoom out from Mars"
+            >
+              − ZOOM OUT
+            </button>
+
+            <button
+              type="button"
+              id="reiniciarMarte"
+            >
+              RESET VIEW
+            </button>
+
+          </div>
+
+          <p class="instruccion-visor">
+            DRAG TO ROTATE · SCROLL TO ZOOM · SELECT
+            A HISTORICAL MARKER TO EXPLORE
+          </p>
+
+          <p class="credito-textura">
+            Planetary visualization for educational exploration.
+          </p>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- MARTIAN HISTORICAL MARKERS -->
+        <!-- ================================== -->
+
+        <div class="seccion-marcadores">
+
+          <h3>HISTORICAL MARTIAN MARKERS</h3>
+
+          <p>
+            Discover the missions that reached
+            the Martian surface and the explorers
+            that left their mark on another world.
+          </p>
+
+          <div
+            id="marcadoresMarte"
+            class="marcadores-planeta"
+            aria-label="Historical markers on Mars"
+          ></div>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- MARTIAN TIMELINE ACCESS -->
+        <!-- ================================== -->
+
+        <div class="acceso-cronologia">
+
+          <p>EXPLORE THE PAST</p>
+
+          <h3>
+            FOLLOW THE HISTORY OF MARTIAN EXPLORATION
+          </h3>
+
+          <button
+            type="button"
+            class="boton-secundario"
+            data-ir="lineasTiempo"
+            data-destino-tiempo="marte"
+          >
+            VIEW MARTIAN TIMELINE →
+          </button>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- MARTIAN ARTIFACT COLLECTION -->
+        <!-- ================================== -->
+
+        <div class="archivo-objetos">
+
+          <div class="titulo-seccion">
+
+            <p>THE MARTIAN ARCHIVE</p>
+
+            <h2>12 HISTORICAL OBJECTS ON MARS</h2>
+
+            <p>
+              From the earliest landers to robotic
+              vehicles and the first powered aircraft
+              on another planet, discover the
+              stories behind Martian exploration.
+            </p>
+
+          </div>
+
+          <p class="descripcion-coleccion">
+            SELECT AN OBJECT TO OPEN ITS HISTORICAL RECORD.
+          </p>
+
+          <!--
+            These 12 cards are generated automatically
+            by script.js using the ARCHIVO data.
+          -->
+
+          <div
+            id="objetosMarte"
+            class="rejilla-objetos"
+            aria-label="Collection of 12 Martian objects"
+          ></div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ====================================== -->
+      <!-- END OF PART 2 -->
+      <!-- ====================================== -->
+
+      <!--
+        CONTINUE WITH PART 3 BELOW.
+
+        NEXT:
+        - MOON AND MARS TIMELINES
+        - HISTORICAL EVENT DETAILS
+        - INDIVIDUAL OBJECT RECORDS
+        - NASA PHOTOGRAPHY GALLERY
+        - HISTORICAL STORIES
+        - RATATOPO COMICS
+
+        DO NOT CLOSE:
+        - section#museo
+        - main#aplicacion
+        - body
+        - html
+      -->
+
+      <!-- ====================================== -->
+      <!-- MOON AND MARS TIMELINES -->
+      <!-- ====================================== -->
+
+      <section
+        id="lineasTiempo"
+        class="lineas-tiempo"
+        hidden
+      >
+
+        <button
+          type="button"
+          class="boton-regresar"
+          data-ir="seleccionMundos"
+        >
+          ← BACK TO THE MUSEUM
+        </button>
+
+        <div class="titulo-seccion">
+
+          <p>CHAPTERS OF EXPLORATION</p>
+
+          <h2>TRACES THROUGH TIME</h2>
+
+          <p>
+            Before becoming forgotten artifacts,
+            every spacecraft and scientific instrument
+            was part of an extraordinary mission.
+            Discover when they arrived, what they
+            explored, and the legacy they left behind.
+          </p>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- TIMELINE SELECTOR -->
+        <!-- ================================== -->
+
+        <div
+          class="selector-cronologias"
+          role="group"
+          aria-label="Select a timeline"
+        >
+
+          <button
+            id="botonTiempoLuna"
+            type="button"
+            data-tiempo="luna"
+            aria-pressed="true"
+          >
+            🌕 MOON HISTORY
+          </button>
+
+          <button
+            id="botonTiempoMarte"
+            type="button"
+            data-tiempo="marte"
+            aria-pressed="false"
+          >
+            🔴 MARS HISTORY
+          </button>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- LUNAR TIMELINE -->
+        <!-- ================================== -->
+
+        <div
+          id="cronologiaLuna"
+          class="cronologia-mundo"
+        >
+
+          <div class="encabezado-cronologia">
+
+            <span>LUNAR CHAPTER</span>
+
+            <h3>
+              FROM THE FIRST IMPACTS
+              TO HUMAN FOOTPRINTS
+            </h3>
+
+          </div>
+
+          <div
+            id="eventosLuna"
+            class="lista-eventos-tiempo"
+          >
+
+            <!--
+              JavaScript generates historical
+              timeline cards with dates, images,
+              descriptions, and links to records.
+            -->
+
+          </div>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- MARTIAN TIMELINE -->
+        <!-- ================================== -->
+
+        <div
+          id="cronologiaMarte"
+          class="cronologia-mundo"
+          hidden
+        >
+
+          <div class="encabezado-cronologia">
+
+            <span>MARTIAN CHAPTER</span>
+
+            <h3>
+              FROM THE FIRST SPACE PROBES
+              TO ROBOTIC EXPLORERS
+            </h3>
+
+          </div>
+
+          <div
+            id="eventosMarte"
+            class="lista-eventos-tiempo"
+          >
+
+            <!--
+              JavaScript generates the Martian
+              timeline and historical records.
+            -->
+
+          </div>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- HISTORICAL EVENT DETAILS -->
+        <!-- ================================== -->
+
+        <article
+          id="detalleEventoTiempo"
+          class="detalle-evento-tiempo"
+          hidden
+        >
+
+          <div class="cabecera-evento">
+
+            <span id="fechaEventoTiempo">
+              YEAR
+            </span>
+
+            <h3 id="tituloEventoTiempo">
+              HISTORICAL MISSION
+            </h3>
+
+          </div>
+
+          <div
+            id="imagenEventoTiempo"
+            class="imagen-evento-tiempo"
+          ></div>
+
+          <p id="descripcionEventoTiempo"></p>
+
+          <div id="datosEventoTiempo"></div>
+
+          <button
+            id="abrirObjetoEvento"
+            type="button"
+            class="boton-principal"
+            hidden
+          >
+            OPEN FULL HISTORICAL RECORD →
+          </button>
+
+        </article>
+
+      </section>
+
+
+      <!-- ====================================== -->
+      <!-- INDIVIDUAL ARTIFACT RECORD -->
+      <!-- ====================================== -->
+
+      <section
+        id="detalleObjeto"
+        class="detalle-objeto"
+        hidden
+      >
+
+        <button
+          type="button"
+          class="boton-regresar"
+          id="regresarObjetos"
+        >
+          ← BACK TO THE ARCHIVE
+        </button>
+
+
+        <!-- ================================== -->
+        <!-- ARTIFACT INFORMATION -->
+        <!-- ================================== -->
+
+        <div class="contenido-detalle">
+
+          <div class="modelo-objeto">
+
+            <div
+              id="modeloObjeto"
+              class="visor-objeto"
+            ></div>
+
+            <p class="instruccion-visor">
+              ARTIFACT REPRESENTATION
+            </p>
+
+          </div>
+
+
+          <div class="informacion-objeto">
+
+            <span id="categoriaObjeto">
+              HISTORICAL RECORD
+            </span>
+
+            <h2 id="nombreObjeto">
+              ARTIFACT NAME
+            </h2>
+
+            <p id="descripcionObjeto">
+              Description of the space artifact.
+            </p>
+
+
+            <!-- ARTIFACT DATA -->
+
+            <div class="datos-objeto">
+
+              <div>
+
+                <span>MISSION</span>
+
+                <strong id="misionObjeto">
+                  ---
+                </strong>
+
+              </div>
+
+              <div>
+
+                <span>DATE</span>
+
+                <strong id="fechaObjeto">
+                  ---
+                </strong>
+
+              </div>
+
+              <div>
+
+                <span>LOCATION</span>
+
+                <strong id="ubicacionObjeto">
+                  ---
+                </strong>
+
+              </div>
+
+              <div>
+
+                <span>CURRENT STATUS</span>
+
+                <strong id="estadoObjeto">
+                  ---
+                </strong>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ====================================== -->
+        <!-- NASA PHOTOGRAPHY GALLERY -->
+        <!-- ====================================== -->
+
+        <section
+          id="galeriaObjeto"
+          class="galeria-objeto"
+        >
+
+          <div class="titulo-seccion">
+
+            <p>PHOTOGRAPHIC ARCHIVE</p>
+
+            <h3>
+              REAL IMAGES FROM THE MISSION
+            </h3>
+
+          </div>
+
+          <p class="introduccion-galeria">
+            Historical photographs, orbital imagery,
+            and visual records from official
+            space exploration archives.
+          </p>
+
+
+          <!-- PHOTOGRAPH GRID -->
+
+          <div
+            id="imagenesObjeto"
+            class="rejilla-galeria"
+          >
+
+            <!--
+              Mission photographs are inserted
+              dynamically by JavaScript.
+            -->
+
+          </div>
+
+
+          <!-- ================================== -->
+          <!-- ENLARGED IMAGE VIEWER -->
+          <!-- ================================== -->
+
+          <div
+            id="visorImagenAmpliada"
+            class="visor-imagen-ampliada"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Enlarged photograph"
+            hidden
+          >
+
+            <button
+              id="cerrarImagenAmpliada"
+              type="button"
+              aria-label="Close photograph"
+            >
+              ×
+            </button>
+
+            <figure>
+
+              <img
+                id="imagenAmpliada"
+                src=""
+                alt="Enlarged historical photograph"
+              >
+
+              <figcaption
+                id="pieImagenAmpliada"
+              ></figcaption>
+
+            </figure>
+
+          </div>
+
+        </section>
+
+
+        <!-- ====================================== -->
+        <!-- HISTORICAL STORY -->
+        <!-- ====================================== -->
+
+        <div class="historia-objeto">
+
+          <div class="titulo-seccion">
+
+            <p>RECOVERED MEMORY</p>
+
+            <h3>ITS STORY</h3>
+
+          </div>
+
+          <div id="historiaCompleta"></div>
+
+        </div>
+
+
+        <!-- ====================================== -->
+        <!-- INTERACTIVE RATATOPO COMIC -->
+        <!-- ====================================== -->
+
+        <section
+          id="comicObjeto"
+          class="comic-objeto"
+        >
+
+          <div class="titulo-seccion">
+
+            <p>ILLUSTRATED MISSION RECORD</p>
+
+            <h3>
+              THE STORY THAT MUST NEVER BE FORGOTTEN
+            </h3>
+
+            <p>
+              Travel alongside Ratatopo through
+              the most important moments
+              of this historic space mission.
+            </p>
+
+          </div>
+
+
+          <!-- ================================== -->
+          <!-- COMIC COVER -->
+          <!-- ================================== -->
+
+          <div class="portada-comic">
+
+            <span id="numeroExpedienteComic">
+              SPACE MISSION FILE
+            </span>
+
+            <h4 id="tituloComic">
+              A STORY AMONG THE STARS
+            </h4>
+
+            <p id="introduccionComic">
+              Every artifact has a story
+              that deserves to be told.
+            </p>
+
+          </div>
+
+
+          <!-- ================================== -->
+          <!-- COMIC PANELS -->
+          <!-- ================================== -->
+
+          <div
+            id="paginasComic"
+            class="paginas-comic"
+          >
+
+            <!--
+              JavaScript creates comic panels with:
+
+              - Historical photographs or illustrations
+              - Mission narration
+              - Ratatopo's dialogue
+              - Scientific facts
+              - Animated transitions
+            -->
+
+          </div>
+
+
+          <!-- ================================== -->
+          <!-- COMIC NAVIGATION -->
+          <!-- ================================== -->
+
+          <div class="controles-comic">
+
+            <button
+              id="comicAnterior"
+              type="button"
+              disabled
+            >
+              ← PREVIOUS PANEL
+            </button>
+
+            <span
+              id="contadorComic"
+              aria-live="polite"
+            >
+              PANEL 1
+            </span>
+
+            <button
+              id="comicSiguiente"
+              type="button"
+            >
+              NEXT PANEL →
+            </button>
+
+          </div>
+
+
+          <!-- ================================== -->
+          <!-- EDUCATIONAL CONCLUSION -->
+          <!-- ================================== -->
+
+          <div class="conclusion-comic">
+
+            <span>
+              ✦ WHAT WE LEARNED
+            </span>
+
+            <h4>
+              WHY DOES THIS ARTIFACT MATTER?
+            </h4>
+
+            <p id="aprendizajeComic">
+              Discover how this mission contributed
+              to our understanding of the universe.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ====================================== -->
+        <!-- HISTORICAL SOURCES -->
+        <!-- ====================================== -->
+
+        <section
+          id="fuentesObjeto"
+          class="fuentes-objeto"
+        >
+
+          <div class="titulo-seccion">
+
+            <p>VERIFIABLE INFORMATION</p>
+
+            <h3>
+              HISTORICAL SOURCES AND DOCUMENTS
+            </h3>
+
+          </div>
+
+          <p>
+            These stories are based on scientific
+            and historical information.
+            Ratatopo's dialogues are fictional
+            educational recreations.
+          </p>
+
+          <div
+            id="enlacesFuentesObjeto"
+            class="enlaces-fuentes"
+          >
+
+            <!-- Official sources for each mission -->
+
+          </div>
+
+          <p
+            id="creditoImagenesObjeto"
+            class="creditos-imagenes"
+          ></p>
+
+        </section>
+
+
+        <!-- ====================================== -->
+        <!-- DISCOVERY REGISTRATION -->
+        <!-- ====================================== -->
+
+        <div class="acciones-objeto">
+
+          <p id="estadoDescubrimiento">
+            This artifact has not yet been
+            registered in your exploration.
+          </p>
+
+          <button
+            type="button"
+            id="botonDescubierto"
+            class="boton-principal"
+          >
+            REGISTER DISCOVERY ✦
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- ====================================== -->
+      <!-- END OF PART 3 -->
+      <!-- ====================================== -->
+
+      <!--
+        CONTINUE WITH PART 4 BELOW.
+
+        NEXT:
+        - MOON VS. MARS COMPARISON
+        - HIDDEN ARTIFACTS
+        - EXPLORER CHALLENGE
+        - RATATOPO ASSISTANT
+        - NASA SOURCES
+        - FOOTER
+        - CLOSING HTML TAGS
+
+        DO NOT CLOSE:
+        - section#museo
+        - main#aplicacion
+        - body
+        - html
+      -->
+
+      <!-- ====================================== -->
+      <!-- MOON VS. MARS COMPARISON -->
+      <!-- ====================================== -->
+
+      <section
+        id="comparacionMundos"
+        class="comparacion-mundos"
+        hidden
+      >
+
+        <button
+          type="button"
+          class="boton-regresar"
+          data-ir="seleccionMundos"
+        >
+          ← BACK TO THE MUSEUM
+        </button>
+
+        <div class="titulo-seccion">
+
+          <p>EXPLORATION DATA</p>
+
+          <h2>TWO WORLDS, TWO STORIES</h2>
+
+          <p>
+            Compare the characteristics of the Moon
+            and Mars, and discover how their environments
+            affect the objects left behind by space missions.
+          </p>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- PLANETARY COMPARISON TABLE -->
+        <!-- ================================== -->
+
+        <div
+          id="datosComparacion"
+          class="tabla-comparacion"
+        >
+
+          <div class="fila-comparacion fila-encabezado">
+            <span>CHARACTERISTIC</span>
+            <span>THE MOON</span>
+            <span>MARS</span>
+          </div>
+
+          <div class="fila-comparacion">
+            <span>TYPE OF WORLD</span>
+            <span>NATURAL SATELLITE</span>
+            <span>PLANET</span>
+          </div>
+
+          <div class="fila-comparacion">
+            <span>EXPLORATION</span>
+            <span>HUMAN AND ROBOTIC MISSIONS</span>
+            <span>ROBOTIC MISSIONS</span>
+          </div>
+
+          <div class="fila-comparacion">
+            <span>ATMOSPHERE</span>
+            <span>EXTREMELY THIN EXOSPHERE</span>
+            <span>THIN CO₂ ATMOSPHERE</span>
+          </div>
+
+          <div class="fila-comparacion">
+            <span>SURFACE GRAVITY</span>
+            <span>APPROX. 1.62 m/s²</span>
+            <span>APPROX. 3.71 m/s²</span>
+          </div>
+
+          <div class="fila-comparacion">
+            <span>WIND AND DUST</span>
+            <span>NO ATMOSPHERIC WIND</span>
+            <span>WIND AND DUST STORMS</span>
+          </div>
+
+          <div class="fila-comparacion">
+            <span>FOOTPRINT PRESERVATION</span>
+            <span>VERY LONG-LASTING</span>
+            <span>AFFECTED BY WIND AND DUST</span>
+          </div>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- SCIENTIFIC EXPLANATION -->
+        <!-- ================================== -->
+
+        <div class="conclusion-comparacion">
+
+          <h3>WHY DO THEY AGE DIFFERENTLY?</h3>
+
+          <p>
+            On the Moon, there is no rain or
+            atmospheric wind to quickly erase
+            footprints and tracks. However,
+            radiation, micrometeorites, and extreme
+            temperatures still affect materials.
+          </p>
+
+          <p>
+            On Mars, dust, wind, and temperature
+            changes gradually alter the appearance
+            of spacecraft and landing sites.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- ====================================== -->
+      <!-- HIDDEN ARTIFACTS -->
+      <!-- ====================================== -->
+
+      <section
+        id="objetosOcultos"
+        class="objetos-ocultos"
+        hidden
+      >
+
+        <button
+          type="button"
+          class="boton-regresar"
+          data-ir="seleccionMundos"
+        >
+          ← BACK TO THE MUSEUM
+        </button>
+
+        <div class="titulo-seccion">
+
+          <p>SECRET EXPLORATION</p>
+
+          <h2>THE LOST ARTIFACTS</h2>
+
+          <p>
+            Some objects hide surprising stories.
+            Investigate their clues and uncover
+            the secrets of forgotten space missions.
+          </p>
+
+        </div>
+
+        <div id="listaObjetosOcultos"></div>
+
+      </section>
+
+
+      <!-- ====================================== -->
+      <!-- EXPLORER KNOWLEDGE CHALLENGE -->
+      <!-- ====================================== -->
+
+      <section
+        id="cuestionario"
+        class="cuestionario"
+        hidden
+      >
+
+        <button
+          type="button"
+          class="boton-regresar"
+          data-ir="seleccionMundos"
+        >
+          ← BACK TO THE MUSEUM
+        </button>
+
+        <div class="titulo-seccion">
+
+          <p>KNOWLEDGE TEST</p>
+
+          <h2>THE EXPLORER'S CHALLENGE</h2>
+
+          <p>
+            Answer ten questions about the historical
+            artifacts and space missions of the Moon
+            and Mars.
+          </p>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- QUIZ PANEL -->
+        <!-- ================================== -->
+
+        <div class="panel-cuestionario">
+
+          <div class="progreso-preguntas">
+
+            <span id="numeroPregunta">
+              QUESTION 1 OF 10
+            </span>
+
+            <span id="puntuacionActual">
+              POINTS: 0
+            </span>
+
+          </div>
+
+          <div class="barra-preguntas">
+            <div id="avancePreguntas"></div>
+          </div>
+
+
+          <!-- QUESTION AND ANSWERS -->
+
+          <div id="contenedorPregunta">
+
+            <h3 id="textoPregunta">
+              PREPARING QUESTION...
+            </h3>
+
+            <div id="opcionesPregunta"></div>
+
+          </div>
+
+
+          <!-- NEXT QUESTION -->
+
+          <button
+            type="button"
+            id="botonSiguientePregunta"
+            class="boton-principal"
+            disabled
+          >
+            NEXT QUESTION →
+          </button>
+
+
+          <!-- ================================== -->
+          <!-- QUIZ RESULTS -->
+          <!-- ================================== -->
+
+          <div
+            id="resultadoCuestionario"
+            class="resultado-cuestionario"
+            hidden
+          >
+
+            <h3>EXPLORATION COMPLETED</h3>
+
+            <p id="mensajeResultado"></p>
+
+            <strong id="calificacionFinal"></strong>
+
+            <button
+              type="button"
+              id="reiniciarCuestionario"
+              class="boton-principal"
+            >
+              TRY AGAIN
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ====================================== -->
+      <!-- RATATOPO ASSISTANT -->
+      <!-- ====================================== -->
+
+      <aside
+        id="asistenteRatatopo"
+        class="asistente-ratatopo"
+      >
+
+        <!-- ASSISTANT BUTTON -->
+
+        <button
+          type="button"
+          id="botonRatatopo"
+          class="boton-ratatopo"
+          aria-label="Open Ratatopo assistant"
+          aria-expanded="false"
+        >
+
+          <div
+            id="personajeRatatopo"
+            class="personaje-ratatopo"
+          ></div>
+
+          <span>NEED HELP?</span>
+
+        </button>
+
+
+        <!-- ================================== -->
+        <!-- ASSISTANT WINDOW -->
+        <!-- ================================== -->
+
+        <div
+          id="ventanaRatatopo"
+          class="ventana-ratatopo"
+          hidden
+        >
+
+          <div class="encabezado-ratatopo">
+
+            <strong>RATATOPO</strong>
+
+            <button
+              type="button"
+              id="cerrarRatatopo"
+              aria-label="Close assistant"
+            >
+              ×
+            </button>
+
+          </div>
+
+
+          <!-- ASSISTANT MESSAGE -->
+
+          <div
+            id="mensajeRatatopo"
+            class="mensaje-ratatopo"
+            aria-live="polite"
+          >
+
+            Hello, explorer!
+
+            I'm Ratatopo, your space travel companion.
+            I'm here to help you discover the secrets
+            hidden within the archive.
+
+          </div>
+
+
+          <!-- ASSISTANT OPTIONS -->
+
+          <div class="opciones-ratatopo">
+
+            <button
+              type="button"
+              data-ayuda="luna"
+            >
+              WHAT IS ON THE MOON?
+            </button>
+
+            <button
+              type="button"
+              data-ayuda="marte"
+            >
+              WHAT IS ON MARS?
+            </button>
+
+            <button
+              type="button"
+              data-ayuda="progreso"
+            >
+              HOW DO I MAKE PROGRESS?
+            </button>
+
+            <button
+              type="button"
+              data-ayuda="comic"
+            >
+              HOW DO I READ THE COMICS?
+            </button>
+
+            <button
+              type="button"
+              data-ayuda="tiempo"
+            >
+              WHAT IS THE TIMELINE?
+            </button>
+
+          </div>
+
+        </div>
+
+      </aside>
+
+
+      <!-- ====================================== -->
+      <!-- OFFICIAL SCIENTIFIC SOURCES -->
+      <!-- ====================================== -->
+
+      <section
+        id="fuentesGenerales"
+        class="fuentes-generales"
+      >
+
+        <div class="titulo-seccion">
+
+          <p>SCIENCE AND MEMORY</p>
+
+          <h3>WHERE OUR STORIES COME FROM</h3>
+
+          <p>
+            Our museum combines historical information
+            about space missions with original
+            educational storytelling.
+          </p>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- NASA SOURCES -->
+        <!-- ================================== -->
+
+        <div class="lista-fuentes-generales">
+
+          <a
+            href="https://nssdc.gsfc.nasa.gov/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            NASA NSSDCA · MISSION ARCHIVE
+          </a>
+
+          <a
+            href="https://science.nasa.gov/moon/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            NASA SCIENCE · THE MOON
+          </a>
+
+          <a
+            href="https://science.nasa.gov/mars/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            NASA SCIENCE · MARS
+          </a>
+
+          <a
+            href="https://mars.nasa.gov/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            NASA MARS EXPLORATION
+          </a>
+
+          <a
+            href="https://www.nasa.gov/history/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            NASA HISTORY · HISTORICAL ARCHIVES
+          </a>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- EDUCATIONAL DISCLAIMER -->
+        <!-- ================================== -->
+
+        <p class="nota-fuentes">
+          Historical photographs retain their original
+          credits. Illustrated stories distinguish
+          documented scientific facts from Ratatopo's
+          fictional educational dialogues.
+        </p>
+
+      </section>
+
+
+      <!-- ====================================== -->
+      <!-- MUSEUM FOOTER -->
+      <!-- ====================================== -->
+
+      <footer class="pie-museo">
+
+        <p>ARCHIVE OF THE FORGOTTEN</p>
+
+        <span>
+          A STORY OF EXPLORATION,
+          SCIENCE, AND MEMORY
+        </span>
+
+        <span>NASA SPACE APPS CHALLENGE</span>
+
+        <span>
+          TEAM LOS RATATOPOS MARCIANOS
+        </span>
+
+      </footer>
+
+
+    <!-- ====================================== -->
+    <!-- END OF MAIN MUSEUM -->
+    <!-- ====================================== -->
+
+    </section>
+
+  </main>
+
+
+  <!-- ====================================== -->
+  <!-- THREE.JS LIBRARY -->
+  <!-- ====================================== -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+
+  <!-- ====================================== -->
+  <!-- MAIN JAVASCRIPT -->
+  <!-- ====================================== -->
+
+  <script src="script.js"></script>
+
+</body>
+</html>

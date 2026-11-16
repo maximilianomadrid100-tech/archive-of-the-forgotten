@@ -1,0 +1,4153 @@
+
+/* ==========================================================
+   ARCHIVO DE LOS OLVIDADOS
+   LOS RATATOPOS MARCIANOS
+   NASA SPACE APPS CHALLENGE
+
+   STYLE.CSS — DISEÑO ESPACIAL COMPLETO
+   Inspirado en las capturas originales.
+   Compatible con el HTML y las clases del SCRIPT.JS.
+========================================================== */
+
+/* ==========================================================
+   01. VARIABLES Y REINICIO
+========================================================== */
+
+:root {
+    --fondo: #050a19;
+    --fondo-2: #080f24;
+    --panel: #0a1530;
+    --panel-2: #0e1c3c;
+    --panel-claro: #12264a;
+
+    --azul: #00cfff;
+    --azul-claro: #66e7ff;
+    --azul-oscuro: #125b91;
+    --violeta: #8d5bff;
+    --dorado: #e5b85e;
+    --verde: #49f0ad;
+
+    --blanco: #f3f6ff;
+    --texto: #c1cce5;
+    --apagado: #8292b6;
+
+    --borde: rgba(47, 133, 207, 0.42);
+    --borde-fuerte: rgba(0, 207, 255, 0.7);
+
+    --sombra: 0 0 25px rgba(0, 190, 255, 0.09);
+    --resplandor: 0 0 22px rgba(0, 207, 255, 0.25);
+
+    --radio: 12px;
+    --radio-pequeno: 7px;
+
+    --ancho: 1080px;
+    --transicion: 0.25s ease;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    color: var(--blanco);
+    background: var(--fondo);
+
+    font-family: "Rajdhani", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 28%,
+            rgba(19, 39, 89, 0.24),
+            transparent 54%
+        ),
+        radial-gradient(
+            ellipse at 82% 82%,
+            rgba(29, 20, 77, 0.16),
+            transparent 48%
+        ),
+        linear-gradient(
+            180deg,
+            #040817 0%,
+            #060c1d 48%,
+            #080f24 100%
+        );
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--azul);
+    outline-offset: 4px;
+}
+
+a {
+    color: var(--azul-claro);
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    color: var(--blanco);
+    font-family: "Orbitron", sans-serif;
+    font-weight: 700;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+p {
+    margin-top: 0;
+    color: var(--texto);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+::selection {
+    background: var(--azul);
+    color: #031022;
+}
+
+/* ==========================================================
+   02. FONDO ESPACIAL, ESTRELLAS Y NEBULOSA
+========================================================== */
+
+#fondoEspacial {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.estrellas {
+    position: absolute;
+    inset: -50%;
+    opacity: 0.5;
+    background-repeat: repeat;
+    animation: flotarEstrellas 100s linear infinite;
+}
+
+.estrellas-1 {
+    background-image:
+        radial-gradient(1px 1px at 30px 45px, #fff, transparent),
+        radial-gradient(1px 1px at 140px 100px, #79cfff, transparent),
+        radial-gradient(1px 1px at 230px 180px, #fff, transparent);
+    background-size: 290px 240px;
+    opacity: 0.28;
+}
+
+.estrellas-2 {
+    background-image:
+        radial-gradient(1.5px 1.5px at 90px 65px, #fff, transparent),
+        radial-gradient(1px 1px at 250px 160px, #6acbff, transparent),
+        radial-gradient(1px 1px at 390px 250px, #fff, transparent);
+    background-size: 450px 330px;
+    opacity: 0.33;
+    animation-duration: 150s;
+    animation-direction: reverse;
+}
+
+.estrellas-3 {
+    background-image:
+        radial-gradient(2px 2px at 140px 120px, #9be9ff, transparent),
+        radial-gradient(1px 1px at 370px 270px, #fff, transparent);
+    background-size: 540px 410px;
+    opacity: 0.22;
+    animation-duration: 190s;
+}
+
+#nebulosa {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(
+            ellipse at 15% 70%,
+            rgba(18, 54, 110, 0.12),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 82% 20%,
+            rgba(69, 33, 130, 0.09),
+            transparent 38%
+        );
+    filter: blur(25px);
+}
+
+@keyframes flotarEstrellas {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(180px);
+    }
+}
+
+/* ==========================================================
+   03. ESTRUCTURA GENERAL Y PANTALLAS
+========================================================== */
+
+#aplicacion {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+}
+
+.pantalla {
+    display: none;
+    min-height: 100vh;
+}
+
+.pantalla.activa {
+    display: block;
+}
+
+#museo {
+    width: 100%;
+    padding-bottom: 0;
+}
+
+#museo > section:not(#progresoExploracion) {
+    width: min(calc(100% - 40px), var(--ancho));
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#seleccionMundos,
+#vistaLuna,
+#vistaMarte,
+#lineasTiempo,
+#detalleObjeto,
+#comparacionMundos,
+#objetosOcultos,
+#cuestionario {
+    padding-top: 34px;
+    padding-bottom: 70px;
+}
+
+#seleccionMundos,
+#vistaLuna,
+#vistaMarte,
+#lineasTiempo,
+#detalleObjeto,
+#comparacionMundos,
+#objetosOcultos,
+#cuestionario {
+    animation: aparecerContenido 0.4s ease both;
+}
+
+@keyframes aparecerContenido {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================
+   04. ESCENA ESPACIAL Y NAVE
+========================================================== */
+
+#escena3d {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+#escena3d canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.interfaz-nave {
+    position: absolute;
+    left: 22px;
+    bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    padding: 10px 13px;
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+
+    background: rgba(4, 12, 29, 0.7);
+    backdrop-filter: blur(8px);
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.identificacion-nave {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--azul-claro);
+}
+
+.indicador-luz {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--verde);
+    box-shadow: 0 0 10px var(--verde);
+}
+
+.datos-nave {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    color: var(--apagado);
+}
+
+/* ==========================================================
+   05. PORTADA DE INICIO
+========================================================== */
+
+#portada {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 100px 24px;
+    text-align: center;
+}
+
+#portada.activa {
+    display: flex;
+}
+
+.contenido-portada {
+    position: relative;
+    width: min(100%, 850px);
+    margin: auto;
+}
+
+.etiqueta-superior {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 17px;
+
+    border: 1px solid var(--borde-fuerte);
+    border-radius: 100px;
+
+    color: var(--azul);
+    background: rgba(0, 184, 255, 0.05);
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.subtitulo-portada {
+    color: var(--dorado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.contenido-portada h1 {
+    margin: 25px 0;
+    font-size: clamp(40px, 7vw, 86px);
+    line-height: 1.12;
+    letter-spacing: -2px;
+    text-shadow: 0 0 30px rgba(0, 207, 255, 0.12);
+}
+
+.contenido-portada h1 span {
+    display: block;
+    color: var(--azul);
+}
+
+.descripcion-portada {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    font-size: clamp(16px, 2vw, 21px);
+    line-height: 1.8;
+}
+
+.destinos-portada {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+
+    margin: 30px 0;
+    color: var(--blanco);
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+}
+
+.separador-destinos {
+    color: var(--dorado);
+    font-size: 23px;
+}
+
+.instruccion-portada {
+    margin: 25px auto 0;
+    max-width: 500px;
+
+    color: var(--apagado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    letter-spacing: 1.4px;
+    line-height: 2;
+}
+
+/* ==========================================================
+   06. BOTONES GENERALES
+========================================================== */
+
+.boton-principal,
+.boton-explorar,
+.boton-secundario,
+.boton-regresar,
+.boton-ver-objeto,
+.boton-evento-tiempo,
+.boton-registro-inventario {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 39px;
+    padding: 10px 17px;
+
+    border: 1px solid var(--azul);
+    border-radius: 6px;
+
+    color: var(--azul-claro);
+    background: rgba(0, 178, 255, 0.06);
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0.4px;
+    text-align: center;
+
+    transition:
+        background var(--transicion),
+        color var(--transicion),
+        transform var(--transicion),
+        box-shadow var(--transicion);
+}
+
+.boton-principal {
+    padding: 13px 24px;
+    color: #fff;
+
+    border-color: #39d9ff;
+    background: linear-gradient(
+        110deg,
+        #007fae,
+        #3041bd 70%,
+        #6739c7
+    );
+
+    box-shadow: 0 0 20px rgba(0, 194, 255, 0.2);
+}
+
+.boton-secundario {
+    border-color: rgba(155, 103, 255, 0.55);
+    color: #d8c6ff;
+    background: rgba(120, 70, 210, 0.09);
+}
+
+.boton-regresar {
+    margin-bottom: 26px;
+    min-height: 34px;
+    padding: 8px 13px;
+    font-size: 9px;
+}
+
+.boton-principal:hover,
+.boton-explorar:hover,
+.boton-secundario:hover,
+.boton-regresar:hover,
+.boton-ver-objeto:hover,
+.boton-evento-tiempo:hover,
+.boton-registro-inventario:hover {
+    color: #fff;
+    background: rgba(0, 188, 255, 0.19);
+    box-shadow: var(--resplandor);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================
+   07. HIPERESPACIO
+========================================================== */
+
+#hiperespacio {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+#hiperespacio.activa {
+    display: flex;
+}
+
+.contenido-hiperespacio {
+    width: min(100%, 650px);
+}
+
+.texto-sistema {
+    color: var(--azul);
+    font-family: "Orbitron", sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+.contenido-hiperespacio h2 {
+    font-size: clamp(20px, 4vw, 34px);
+}
+
+.circulo-carga {
+    display: grid;
+    place-items: center;
+
+    width: 160px;
+    height: 160px;
+    margin: 45px auto;
+
+    border: 3px solid rgba(0, 207, 255, 0.14);
+    border-top-color: var(--azul);
+    border-right-color: var(--violeta);
+    border-radius: 50%;
+
+    box-shadow: 0 0 40px rgba(0, 207, 255, 0.12);
+    animation: rotarCarga 1.6s linear infinite;
+}
+
+.circulo-interior {
+    width: 95px;
+    height: 95px;
+
+    border: 2px dashed var(--azul);
+    border-radius: 50%;
+
+    animation: rotarCarga 3s linear infinite reverse;
+}
+
+@keyframes rotarCarga {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#mensajeViaje {
+    color: var(--azul-claro);
+    font-family: "Orbitron", sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.datos-viaje {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+
+    margin-top: 30px;
+    color: var(--dorado);
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+}
+
+/* ==========================================================
+   08. ENCABEZADO DEL MUSEO
+========================================================== */
+
+.encabezado-museo {
+    position: relative;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    width: 100%;
+    min-height: 61px;
+    padding: 12px max(24px, calc((100vw - 1200px) / 2));
+
+    border-bottom: 1px solid var(--borde);
+    background: rgba(4, 9, 23, 0.93);
+}
+
+.logo-museo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.logo-icono {
+    color: var(--dorado);
+    font-size: 22px;
+    text-shadow: 0 0 14px var(--dorado);
+}
+
+.estado-archivo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--apagado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================
+   09. NAVEGACIÓN SUPERIOR
+========================================================== */
+
+.navegacion-museo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    width: 100%;
+    padding: 13px 15px;
+
+    border-bottom: 1px solid rgba(30, 79, 135, 0.16);
+    background: rgba(4, 10, 24, 0.35);
+}
+
+.navegacion-museo button {
+    padding: 10px 15px;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    color: var(--apagado);
+    background: transparent;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+
+    transition: all var(--transicion);
+}
+
+.navegacion-museo button:hover,
+.navegacion-museo button.activo,
+.navegacion-museo button.activa,
+.navegacion-museo button[aria-current="page"] {
+    border-color: var(--borde-fuerte);
+    color: var(--azul-claro);
+    background: rgba(0, 207, 255, 0.08);
+    box-shadow: 0 0 14px rgba(0, 207, 255, 0.08);
+}
+
+/* ==========================================================
+   10. BIENVENIDA
+========================================================== */
+
+.bienvenida-museo {
+    width: min(calc(100% - 40px), 760px);
+    margin: 42px auto 30px;
+    text-align: center;
+}
+
+.bienvenida-museo .etiqueta-superior {
+    margin-bottom: 16px;
+}
+
+.bienvenida-museo h2 {
+    max-width: 690px;
+    margin: 0 auto 17px;
+    font-size: clamp(22px, 3.4vw, 39px);
+    line-height: 1.3;
+}
+
+.bienvenida-museo h2 span {
+    display: block;
+    color: var(--azul);
+}
+
+.bienvenida-museo > p:last-child {
+    max-width: 550px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* ==========================================================
+   11. PROGRESO DE EXPLORACIÓN
+========================================================== */
+
+.progreso-exploracion {
+    width: min(calc(100% - 40px), 660px);
+    margin: 32px auto 20px;
+    padding: 20px 24px;
+
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(10, 25, 53, 0.97),
+            rgba(8, 15, 35, 0.96)
+        );
+
+    box-shadow: var(--sombra);
+}
+
+.encabezado-progreso {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    margin-bottom: 12px;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.encabezado-progreso strong {
+    color: var(--azul);
+    font-size: 17px;
+}
+
+.barra-progreso {
+    height: 9px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #1b2b4e;
+}
+
+#rellenoProgreso {
+    width: 0;
+    height: 100%;
+
+    border-radius: inherit;
+    background: linear-gradient(
+        90deg,
+        var(--azul),
+        #327bff,
+        var(--violeta)
+    );
+
+    box-shadow: 0 0 12px var(--azul);
+    transition: width 0.5s ease;
+}
+
+#textoProgreso {
+    margin: 12px 0 8px;
+    font-size: 14px;
+}
+
+.leyenda-progreso {
+    margin: 0;
+    color: var(--dorado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================
+   12. TÍTULOS DE SECCIÓN
+========================================================== */
+
+.titulo-seccion {
+    margin: 0 auto 28px;
+    text-align: center;
+}
+
+.titulo-seccion > p:first-child,
+.encabezado-mundo > p:first-child,
+.encabezado-cronologia > span {
+    margin-bottom: 10px;
+    color: var(--dorado);
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+}
+
+.titulo-seccion h2,
+.titulo-seccion h3 {
+    max-width: 750px;
+    margin: 0 auto 13px;
+    font-size: clamp(19px, 2.8vw, 30px);
+}
+
+.titulo-seccion > p:not(:first-child) {
+    max-width: 630px;
+    margin: 0 auto;
+    font-size: 15px;
+}
+
+/* ==========================================================
+   13. TARJETAS DE LUNA Y MARTE
+========================================================== */
+
+.tarjetas-mundos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+
+    width: min(100%, 760px);
+    margin: 0 auto;
+}
+
+.tarjeta-mundo {
+    overflow: hidden;
+
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+
+    background: linear-gradient(
+        180deg,
+        #101d3c,
+        #081125
+    );
+
+    box-shadow: var(--sombra);
+    transition: transform var(--transicion), border-color var(--transicion);
+}
+
+.tarjeta-mundo:hover {
+    transform: translateY(-6px);
+    border-color: var(--azul);
+}
+
+.imagen-mundo {
+    position: relative;
+    display: grid;
+    place-items: center;
+
+    height: 245px;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(57, 91, 157, 0.22),
+            transparent 60%
+        ),
+        linear-gradient(180deg, #132144, #0b1530);
+}
+
+.representacion-luna,
+.representacion-marte {
+    position: relative;
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+
+    animation: flotarPlaneta 6s ease-in-out infinite;
+}
+
+.representacion-luna {
+    background:
+        radial-gradient(circle at 30% 28%, #d9dce5 0 5%, transparent 5.5%),
+        radial-gradient(circle at 70% 38%, #9398a7 0 8%, transparent 8.5%),
+        radial-gradient(circle at 40% 73%, #898e9c 0 9%, transparent 9.5%),
+        radial-gradient(circle at 68% 76%, #767b88 0 7%, transparent 7.5%),
+        radial-gradient(
+            circle at 32% 25%,
+            #e1e3ea 0%,
+            #b9bdc9 28%,
+            #7e8595 60%,
+            #343a4d 85%,
+            #151a2c 100%
+        );
+
+    box-shadow:
+        inset -22px -10px 30px rgba(0, 0, 0, 0.45),
+        0 0 45px rgba(167, 191, 235, 0.2);
+}
+
+.representacion-marte {
+    background:
+        radial-gradient(circle at 35% 28%, #f6b67d 0 5%, transparent 5.5%),
+        radial-gradient(circle at 65% 65%, #a34227 0 11%, transparent 11.5%),
+        radial-gradient(circle at 24% 70%, #b94f2c 0 8%, transparent 8.5%),
+        radial-gradient(
+            circle at 30% 25%,
+            #ffb47a,
+            #df7042 32%,
+            #a53e28 68%,
+            #521c20 100%
+        );
+
+    box-shadow:
+        inset -24px -12px 35px rgba(0, 0, 0, 0.45),
+        0 0 45px rgba(255, 117, 65, 0.16);
+
+    animation-delay: -2s;
+}
+
+@keyframes flotarPlaneta {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.contenido-tarjeta {
+    padding: 23px;
+}
+
+.numero-mundo {
+    color: var(--dorado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.contenido-tarjeta h3 {
+    margin: 9px 0 11px;
+    font-size: 23px;
+}
+
+.tarjeta-marte h3 {
+    color: #ff9877;
+}
+
+.contenido-tarjeta p {
+    min-height: 90px;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.contenido-tarjeta .boton-explorar,
+.contenido-tarjeta .boton-secundario {
+    width: 100%;
+    margin-top: 9px;
+}
+
+/* ==========================================================
+   14. INTRODUCCIÓN HISTÓRICA
+========================================================== */
+
+.introduccion-historias {
+    margin-top: 95px;
+}
+
+.pasos-exploracion {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+
+    width: min(100%, 850px);
+    margin: 0 auto;
+}
+
+.paso-exploracion {
+    min-height: 210px;
+    padding: 24px 20px;
+
+    border: 1px solid var(--borde);
+    border-top: 2px solid var(--azul);
+    border-radius: var(--radio);
+
+    background: linear-gradient(
+        145deg,
+        rgba(18, 34, 69, 0.9),
+        rgba(8, 17, 37, 0.94)
+    );
+}
+
+.paso-exploracion:nth-child(2) {
+    border-top-color: var(--violeta);
+}
+
+.paso-exploracion:nth-child(3) {
+    border-top-color: var(--dorado);
+}
+
+.paso-exploracion > span {
+    color: var(--dorado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+}
+
+.paso-exploracion h3 {
+    margin: 14px 0 10px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.paso-exploracion p {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+/* ==========================================================
+   15. EXPLORACIÓN LUNAR Y MARCIANA
+========================================================== */
+
+.encabezado-mundo {
+    max-width: 700px;
+    margin: 0 auto 28px;
+    text-align: center;
+}
+
+.encabezado-mundo h2 {
+    margin-bottom: 12px;
+    font-size: clamp(26px, 4vw, 42px);
+}
+
+.encabezado-mundo > p:last-child {
+    font-size: 16px;
+}
+
+.visor-planeta {
+    width: min(100%, 760px);
+    margin: 0 auto 40px;
+    overflow: hidden;
+
+    border: 1px solid var(--borde-fuerte);
+    border-radius: var(--radio);
+
+    background: #060e22;
+    box-shadow: var(--sombra);
+}
+
+.informacion-visor {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--borde);
+
+    color: var(--azul-claro);
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+}
+
+.contenedor-planeta {
+    position: relative;
+    width: 100%;
+    height: 390px;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #142744,
+            #071125 70%
+        );
+}
+
+.contenedor-planeta canvas,
+.contenedor-planeta iframe {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    border: none;
+}
+
+.controles-planeta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    padding: 15px;
+    border-top: 1px solid var(--borde);
+}
+
+.controles-planeta button {
+    min-height: 36px;
+    padding: 8px 13px;
+
+    border: 1px solid var(--borde-fuerte);
+    border-radius: 6px;
+
+    color: var(--azul-claro);
+    background: rgba(0, 150, 255, 0.09);
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+}
+
+.controles-planeta button:hover {
+    background: rgba(0, 207, 255, 0.2);
+}
+
+.instruccion-visor,
+.credito-textura,
+.nota-visor {
+    padding: 0 20px;
+    text-align: center;
+}
+
+.instruccion-visor {
+    margin: 10px auto 15px;
+    color: var(--texto);
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.7px;
+}
+
+.credito-textura,
+.nota-visor {
+    margin: 0;
+    padding: 12px 20px;
+    border-top: 1px solid rgba(47, 133, 207, 0.2);
+    color: var(--apagado);
+    font-size: 12px;
+}
+
+/* ==========================================================
+   16. MARCADORES HISTÓRICOS
+========================================================== */
+
+.seccion-marcadores {
+    margin: 45px auto;
+    text-align: center;
+}
+
+.seccion-marcadores h3 {
+    margin-bottom: 9px;
+    font-size: 21px;
+}
+
+.seccion-marcadores > p {
+    font-size: 15px;
+}
+
+.marcadores-planeta {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    margin: 22px auto;
+    max-width: 850px;
+}
+
+.marcador-historico {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+
+    max-width: 100%;
+    padding: 9px 12px;
+
+    border: 1px solid var(--borde);
+    border-radius: 30px;
+
+    color: var(--texto);
+    background: rgba(7, 17, 39, 0.9);
+
+    font-size: 12px;
+    line-height: 1.4;
+    transition: all var(--transicion);
+}
+
+.marcador-historico:hover {
+    border-color: var(--azul);
+    color: white;
+    background: rgba(0, 207, 255, 0.09);
+}
+
+.icono-marcador {
+    font-size: 14px;
+}
+
+.nombre-marcador {
+    color: var(--blanco);
+    font-weight: 700;
+}
+
+.ubicacion-marcador,
+.coordenadas-marcador,
+.estado-marcador {
+    color: var(--apagado);
+    font-size: 11px;
+}
+
+.marcador-historico.descubierto {
+    border-color: rgba(73, 240, 173, 0.65);
+}
+
+.etiqueta-marcador-3d {
+    padding: 5px 8px;
+    border: 1px solid var(--azul);
+    border-radius: 5px;
+    color: #fff;
+    background: rgba(5, 14, 32, 0.9);
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+/* ==========================================================
+   17. ACCESO A LA CRONOLOGÍA
+========================================================== */
+
+.acceso-cronologia {
+    width: min(100%, 740px);
+    margin: 45px auto 60px;
+    padding: 28px 24px;
+
+    border: 1px solid rgba(141, 91, 255, 0.55);
+    border-radius: var(--radio);
+
+    background: linear-gradient(
+        135deg,
+        rgba(21, 22, 65, 0.8),
+        rgba(8, 16, 39, 0.95)
+    );
+
+    text-align: center;
+}
+
+.acceso-cronologia p {
+    margin-bottom: 9px;
+    color: var(--dorado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+}
+
+.acceso-cronologia h3 {
+    margin-bottom: 20px;
+    font-size: 19px;
+}
+
+/* ==========================================================
+   18. COLECCIÓN DE LOS 24 OBJETOS
+========================================================== */
+
+.archivo-objetos {
+    margin-top: 40px;
+}
+
+.descripcion-coleccion {
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.rejilla-objetos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.tarjeta-objeto {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+
+    background: linear-gradient(
+        180deg,
+        #111e3c,
+        #081226
+    );
+
+    transition:
+        transform var(--transicion),
+        border-color var(--transicion),
+        box-shadow var(--transicion);
+}
+
+.tarjeta-objeto:hover {
+    transform: translateY(-5px);
+    border-color: var(--azul);
+    box-shadow: var(--resplandor);
+}
+
+.imagen-tarjeta-objeto {
+    display: grid;
+    place-items: center;
+
+    height: 185px;
+    margin: 12px 12px 0;
+    overflow: hidden;
+
+    border-radius: 7px;
+    background:
+        radial-gradient(
+            circle,
+            rgba(49, 88, 160, 0.3),
+            rgba(4, 12, 30, 0.95)
+        );
+}
+
+.imagen-tarjeta-objeto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.icono-objeto {
+    font-size: 45px;
+    filter: drop-shadow(0 0 15px rgba(0, 207, 255, 0.3));
+}
+
+.contenido-tarjeta-objeto {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 17px;
+}
+
+.categoria-tarjeta {
+    color: var(--dorado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+}
+
+.nombre-tarjeta {
+    margin: 9px 0;
+    font-size: 15px;
+}
+
+.mision-tarjeta,
+.estado-tarjeta {
+    color: var(--azul-claro);
+    font-size: 12px;
+}
+
+.descripcion-tarjeta {
+    flex: 1;
+    margin: 11px 0 15px;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.boton-ver-objeto {
+    width: 100%;
+    margin-top: auto;
+}
+
+.tarjeta-objeto.descubierto {
+    border-color: rgba(73, 240, 173, 0.55);
+}
+
+/* ==========================================================
+   19. EXPEDIENTE INDIVIDUAL
+========================================================== */
+
+.contenido-detalle {
+    display: grid;
+    grid-template-columns: 0.95fr 1.25fr;
+    align-items: start;
+    gap: 30px;
+
+    margin: 30px auto 75px;
+}
+
+.modelo-objeto {
+    overflow: hidden;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    background: var(--panel);
+}
+
+.visor-objeto {
+    display: grid;
+    place-items: center;
+    min-height: 280px;
+    padding: 20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(42, 84, 145, 0.3),
+            transparent 75%
+        );
+}
+
+.visor-objeto img {
+    width: 100%;
+    max-height: 270px;
+    object-fit: contain;
+}
+
+.icono-modelo-objeto {
+    font-size: 90px;
+}
+
+.nombre-modelo-objeto {
+    font-family: "Orbitron", sans-serif;
+    font-size: 13px;
+}
+
+.modelo-objeto .instruccion-visor {
+    padding: 13px;
+    margin: 0;
+    border-top: 1px solid var(--borde);
+}
+
+.informacion-objeto {
+    padding: 5px 0;
+}
+
+#categoriaObjeto {
+    color: var(--dorado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 11px;
+}
+
+#nombreObjeto {
+    margin: 10px 0 16px;
+    color: var(--azul);
+    font-size: clamp(23px, 3vw, 34px);
+}
+
+#descripcionObjeto {
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+.datos-objeto {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.datos-objeto > div {
+    min-width: 0;
+    padding: 15px;
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+    background: rgba(12, 25, 55, 0.7);
+}
+
+.datos-objeto span {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--azul);
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+}
+
+.datos-objeto strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+/* ==========================================================
+   20. GALERÍA DE FOTOGRAFÍAS NASA
+========================================================== */
+
+.galeria-objeto {
+    margin: 70px auto;
+}
+
+.introduccion-galeria {
+    max-width: 650px;
+    margin: 0 auto 25px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.rejilla-galeria {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.tarjeta-fotografia {
+    min-width: 0;
+    overflow: hidden;
+
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+
+    background: var(--panel);
+}
+
+.tarjeta-fotografia img {
+    width: 100%;
+    height: 175px;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.tarjeta-fotografia:hover img {
+    transform: scale(1.04);
+}
+
+.boton-ampliar-fotografia {
+    display: block;
+    width: 100%;
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+    overflow: hidden;
+}
+
+.pie-fotografia {
+    padding: 12px;
+}
+
+.titulo-fotografia {
+    display: block;
+    color: var(--blanco);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.credito-fotografia {
+    display: block;
+    margin-top: 5px;
+    color: var(--apagado);
+    font-size: 11px;
+}
+
+.visor-imagen-ampliada {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: grid;
+    place-items: center;
+
+    padding: 55px 20px 20px;
+    background: rgba(2, 5, 14, 0.96);
+    backdrop-filter: blur(12px);
+}
+
+.visor-imagen-ampliada figure {
+    max-width: min(95vw, 1100px);
+    max-height: 85vh;
+    margin: 0;
+    text-align: center;
+}
+
+#imagenAmpliada {
+    width: auto;
+    max-width: 100%;
+    max-height: 72vh;
+    margin: auto;
+    object-fit: contain;
+    border-radius: 7px;
+}
+
+#pieImagenAmpliada {
+    margin-top: 13px;
+    color: var(--texto);
+    font-size: 14px;
+}
+
+#cerrarImagenAmpliada {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+
+    width: 44px;
+    height: 44px;
+
+    border: 1px solid var(--azul);
+    border-radius: 50%;
+
+    color: #fff;
+    background: var(--panel);
+    font-size: 29px;
+}
+
+/* ==========================================================
+   21. HISTORIA DEL OBJETO
+========================================================== */
+
+.historia-objeto {
+    margin: 70px auto;
+}
+
+#historiaCompleta {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.titulo-expediente {
+    margin-bottom: 20px;
+    padding: 24px;
+
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+
+    background: var(--panel);
+    text-align: center;
+}
+
+.bloque-historia {
+    margin-bottom: 17px;
+    padding: 23px;
+
+    border: 1px solid var(--borde);
+    border-left: 3px solid var(--azul);
+    border-radius: 9px;
+
+    background: linear-gradient(
+        120deg,
+        rgba(13, 29, 60, 0.95),
+        rgba(7, 16, 36, 0.95)
+    );
+}
+
+.titulo-bloque-historia {
+    margin-bottom: 12px;
+    color: var(--azul-claro);
+    font-size: 16px;
+}
+
+.texto-bloque-historia {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* ==========================================================
+   22. CÓMICS DE RATATOPO
+========================================================== */
+
+.comic-objeto {
+    max-width: 900px;
+    margin: 70px auto;
+}
+
+.portada-comic {
+    position: relative;
+    overflow: hidden;
+
+    padding: 35px 25px;
+    margin-bottom: 25px;
+
+    border: 1px solid rgba(141, 91, 255, 0.7);
+    border-radius: var(--radio);
+
+    background:
+        radial-gradient(
+            circle at 80% 25%,
+            rgba(141, 91, 255, 0.25),
+            transparent 50%
+        ),
+        linear-gradient(
+            115deg,
+            rgba(8, 50, 87, 0.95),
+            rgba(37, 17, 76, 0.9)
+        );
+
+    text-align: center;
+}
+
+.portada-comic::after {
+    content: "✦";
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    color: rgba(255, 218, 151, 0.5);
+    font-size: 65px;
+}
+
+#numeroExpedienteComic {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 5px 11px;
+
+    border: 1px solid var(--dorado);
+    border-radius: 30px;
+
+    color: var(--dorado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+}
+
+#tituloComic {
+    position: relative;
+    z-index: 1;
+    margin: 0 auto 12px;
+    font-size: clamp(19px, 3vw, 29px);
+}
+
+#introduccionComic {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+.paginas-comic {
+    width: 100%;
+}
+
+.paginas-comic img {
+    display: block;
+    width: 100%;
+    max-width: 850px;
+    height: auto;
+    margin: 0 auto 18px;
+
+    border: 1px solid rgba(115, 157, 220, 0.45);
+    border-radius: 9px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.encabezado-pagina-comic {
+    margin: 18px auto;
+    text-align: center;
+}
+
+.numero-pagina-comic {
+    color: var(--dorado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+}
+
+.rejilla-vinetas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin: 20px auto;
+}
+
+.vineta-comic {
+    min-width: 0;
+    padding: 18px;
+
+    border: 1px solid var(--borde);
+    border-radius: 9px;
+
+    background: var(--panel);
+}
+
+.vineta-narrativa {
+    border-color: rgba(141, 91, 255, 0.45);
+}
+
+.etiqueta-vineta {
+    color: var(--dorado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+}
+
+.narracion-vineta {
+    margin: 12px 0 0;
+    font-size: 15px;
+}
+
+.globo-dialogo-comic {
+    padding: 14px 17px;
+    margin: 12px 0;
+
+    border: 1px solid var(--azul);
+    border-radius: 16px 16px 16px 3px;
+
+    color: #08203b;
+    background: #e7f8ff;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.nota-historica-comic,
+.conclusion-comic {
+    margin: 25px auto;
+    padding: 23px;
+
+    border: 1px solid rgba(0, 207, 255, 0.5);
+    border-radius: var(--radio);
+
+    background: rgba(0, 207, 255, 0.05);
+    text-align: center;
+}
+
+.controles-comic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+
+    margin: 25px auto;
+}
+
+.controles-comic button {
+    min-height: 39px;
+    padding: 10px 17px;
+
+    border: 1px solid var(--azul);
+    border-radius: 6px;
+
+    color: var(--azul-claro);
+    background: rgba(0, 207, 255, 0.08);
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+}
+
+.controles-comic button:hover {
+    background: rgba(0, 207, 255, 0.18);
+}
+
+#contadorComic {
+    color: var(--dorado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 11px;
+}
+
+/* ==========================================================
+   23. ELEMENTOS ILUSTRADOS DEL CÓMIC
+========================================================== */
+
+.escenario-comic {
+    position: relative;
+    min-height: 160px;
+    overflow: hidden;
+
+    border-radius: 9px;
+    background: radial-gradient(
+        circle at 60% 30%,
+        #1b3260,
+        #061025 75%
+    );
+}
+
+.estrellas-comic {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        radial-gradient(1px 1px at 15% 30%, white, transparent),
+        radial-gradient(1px 1px at 75% 20%, white, transparent),
+        radial-gradient(2px 2px at 65% 80%, #66dfff, transparent);
+}
+
+.planeta-comic {
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    right: 15%;
+    top: 18%;
+
+    border-radius: 50%;
+    background: linear-gradient(130deg, #c5d0e4, #43506e);
+    box-shadow: inset -15px -10px 20px #121b30;
+}
+
+.nave-comic {
+    position: absolute;
+    left: 12%;
+    top: 38%;
+
+    font-size: 55px;
+    filter: drop-shadow(0 0 12px var(--azul));
+}
+
+.ratatopo-comic {
+    position: relative;
+    width: 100px;
+    height: 115px;
+    margin: 10px auto;
+}
+
+.casco-ratatopo {
+    position: absolute;
+    inset: 0 8px 15px;
+
+    border: 4px solid #5cbbf7;
+    border-radius: 50%;
+    background: rgba(103, 211, 255, 0.12);
+}
+
+.oreja-ratatopo {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: 13px;
+
+    border: 3px solid #568fc4;
+    border-radius: 50%;
+    background: #a6c4e0;
+}
+
+.oreja-izquierda {
+    left: 2px;
+}
+
+.oreja-derecha {
+    right: 2px;
+}
+
+.cara-ratatopo {
+    position: absolute;
+    left: 21px;
+    top: 28px;
+
+    width: 60px;
+    height: 56px;
+
+    border-radius: 48%;
+    background: #c4d7e9;
+}
+
+.ojo-ratatopo {
+    display: inline-block;
+    width: 7px;
+    height: 9px;
+    margin: 17px 8px 0;
+    border-radius: 50%;
+    background: #102544;
+}
+
+.nariz-ratatopo {
+    width: 11px;
+    height: 9px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: #fa759b;
+}
+
+.traje-ratatopo {
+    position: absolute;
+    left: 27px;
+    bottom: 0;
+
+    width: 48px;
+    height: 40px;
+
+    border-radius: 12px 12px 4px 4px;
+    background: #dceaf5;
+}
+
+.insignia-ratatopo {
+    display: grid;
+    place-items: center;
+    width: 19px;
+    height: 19px;
+    margin: 7px auto;
+
+    border-radius: 50%;
+    color: #fff;
+    background: #1682ca;
+    font-size: 10px;
+}
+
+.onomatopeya-comic {
+    color: #ffe06c;
+    font-family: "Orbitron", sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    text-shadow: 2px 2px #682b9c;
+}
+
+/* ==========================================================
+   24. FUENTES Y DOCUMENTOS HISTÓRICOS
+========================================================== */
+
+.fuentes-objeto {
+    max-width: 850px;
+    margin: 65px auto;
+    padding: 25px;
+
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+
+    background: rgba(9, 20, 43, 0.85);
+}
+
+.enlaces-fuentes,
+.lista-fuentes-generales {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.enlaces-fuentes a,
+.lista-fuentes-generales a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 39px;
+    padding: 10px 13px;
+
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+
+    color: var(--azul-claro);
+    background: rgba(0, 170, 255, 0.04);
+
+    font-size: 13px;
+    font-weight: 700;
+    transition: all var(--transicion);
+}
+
+.enlaces-fuentes a:hover,
+.lista-fuentes-generales a:hover {
+    border-color: var(--azul);
+    background: rgba(0, 207, 255, 0.12);
+}
+
+.titulo-fuente {
+    color: var(--azul-claro);
+    font-size: 13px;
+}
+
+.descripcion-fuente,
+.nota-fuentes {
+    color: var(--apagado);
+    font-size: 13px;
+}
+
+.acciones-objeto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    margin: 35px auto 75px;
+    text-align: center;
+}
+
+/* ==========================================================
+   25. CRONOLOGÍAS
+========================================================== */
+
+.selector-cronologias {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin: 25px auto 35px;
+}
+
+.selector-cronologias button {
+    padding: 11px 17px;
+
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+
+    color: var(--texto);
+    background: var(--panel);
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+}
+
+.selector-cronologias button:hover,
+.selector-cronologias button[aria-pressed="true"] {
+    border-color: var(--azul);
+    color: var(--azul);
+    box-shadow: var(--resplandor);
+}
+
+.encabezado-cronologia {
+    margin: 30px auto;
+    text-align: center;
+}
+
+.encabezado-cronologia h3 {
+    max-width: 700px;
+    margin: 12px auto;
+    font-size: 20px;
+}
+
+.lista-eventos-tiempo {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.evento-tiempo {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 18px;
+
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+
+    background: var(--panel);
+}
+
+.numero-evento-tiempo,
+.fecha-evento-tiempo {
+    color: var(--dorado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+}
+
+.imagen-evento {
+    display: grid;
+    place-items: center;
+
+    height: 145px;
+    margin: 12px 0;
+    overflow: hidden;
+
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+    background: var(--panel-2);
+}
+
+.imagen-evento img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.icono-evento {
+    font-size: 45px;
+}
+
+.titulo-evento-tiempo {
+    margin: 10px 0;
+    font-size: 15px;
+}
+
+.descripcion-evento-tiempo {
+    flex: 1;
+    font-size: 14px;
+}
+
+.estado-evento-tiempo {
+    color: var(--apagado);
+    font-size: 12px;
+}
+
+.boton-evento-tiempo {
+    margin-top: auto;
+}
+
+.detalle-evento-tiempo {
+    max-width: 780px;
+    margin: 35px auto;
+    padding: 25px;
+
+    border: 1px solid var(--azul);
+    border-radius: var(--radio);
+    background: var(--panel);
+}
+
+.cabecera-evento {
+    text-align: center;
+}
+
+#fechaEventoTiempo {
+    color: var(--dorado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 11px;
+}
+
+.imagen-evento-tiempo {
+    display: grid;
+    place-items: center;
+    min-height: 210px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--panel-2);
+}
+
+.imagen-evento-tiempo img {
+    max-height: 320px;
+    object-fit: contain;
+}
+
+.icono-evento-ampliado {
+    font-size: 75px;
+}
+
+/* ==========================================================
+   26. COMPARACIÓN LUNA / MARTE
+========================================================== */
+
+.tabla-comparacion {
+    width: min(100%, 900px);
+    margin: 25px auto;
+    overflow-x: auto;
+
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    background: var(--panel);
+}
+
+.fila-comparacion {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr;
+    min-width: 550px;
+
+    border-bottom: 1px solid rgba(47, 133, 207, 0.25);
+}
+
+.fila-comparacion:last-child {
+    border-bottom: 0;
+}
+
+.fila-comparacion > * {
+    min-width: 0;
+    padding: 15px;
+    border-right: 1px solid rgba(47, 133, 207, 0.2);
+    font-size: 14px;
+}
+
+.fila-comparacion > *:last-child {
+    border-right: 0;
+}
+
+.fila-encabezado {
+    color: var(--azul-claro);
+    background: #10284b;
+    font-family: "Orbitron", sans-serif;
+    font-size: 11px;
+}
+
+.conclusion-comparacion {
+    max-width: 900px;
+    margin: 25px auto;
+    padding: 25px;
+
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    background: var(--panel);
+}
+
+.conclusion-comparacion h3 {
+    color: var(--azul);
+    font-size: 18px;
+}
+
+/* ==========================================================
+   27. INVENTARIO DE OBJETOS OLVIDADOS
+========================================================== */
+
+.filtros-inventario,
+.grupo-filtros-inventario {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px auto;
+}
+
+.filtros-inventario button,
+.grupo-filtros-inventario button {
+    padding: 10px 14px;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    color: var(--azul-claro);
+    background: var(--panel);
+    font-size: 12px;
+}
+
+.encabezado-inventario {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.contador-inventario {
+    color: var(--dorado);
+    font-family: "Orbitron", sans-serif;
+    font-size: 12px;
+}
+
+.rejilla-inventario {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.registro-inventario {
+    padding: 19px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    background: var(--panel);
+}
+
+.icono-registro-inventario {
+    font-size: 30px;
+}
+
+.fecha-registro-inventario,
+.estado-registro-inventario {
+    color: var(--apagado);
+    font-size: 13px;
+}
+
+.mensaje-inventario-vacio {
+    padding: 30px;
+    text-align: center;
+}
+
+/* ==========================================================
+   28. CUESTIONARIO ESPACIAL
+========================================================== */
+
+.panel-cuestionario {
+    max-width: 730px;
+    margin: 25px auto;
+    padding: 28px;
+
+    border: 1px solid var(--borde-fuerte);
+    border-radius: var(--radio);
+
+    background: linear-gradient(
+        145deg,
+        rgba(12, 27, 58, 0.96),
+        rgba(7, 15, 35, 0.98)
+    );
+
+    box-shadow: var(--sombra);
+}
+
+.progreso-preguntas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 15px;
+
+    color: var(--azul);
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+}
+
+.barra-preguntas {
+    height: 7px;
+    overflow: hidden;
+    margin-bottom: 25px;
+
+    border-radius: 20px;
+    background: #203052;
+}
+
+#avancePreguntas {
+    height: 100%;
+    width: 0;
+
+    background: linear-gradient(
+        90deg,
+        var(--azul),
+        var(--violeta)
+    );
+
+    transition: width 0.3s ease;
+}
+
+#textoPregunta {
+    margin: 20px 0;
+    font-size: clamp(17px, 2.4vw, 22px);
+}
+
+#opcionesPregunta {
+    display: grid;
+    gap: 12px;
+    margin: 23px 0;
+}
+
+.opcion-pregunta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    min-height: 48px;
+    padding: 13px 16px;
+
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+
+    color: var(--blanco);
+    background: #101d3b;
+
+    text-align: left;
+    font-size: 15px;
+    transition: all var(--transicion);
+}
+
+.opcion-pregunta:hover {
+    border-color: var(--azul);
+    background: #173052;
+}
+
+.opcion-pregunta.seleccionada,
+.opcion-pregunta[aria-pressed="true"] {
+    border-color: var(--azul);
+    background: rgba(0, 207, 255, 0.16);
+}
+
+.opcion-pregunta.correcta {
+    border-color: var(--verde);
+    background: rgba(73, 240, 173, 0.13);
+}
+
+.opcion-pregunta.incorrecta {
+    border-color: #ff6688;
+    background: rgba(255, 102, 136, 0.12);
+}
+
+.letra-opcion {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    width: 27px;
+    height: 27px;
+
+    border: 1px solid var(--borde);
+    border-radius: 5px;
+
+    color: var(--azul);
+    font-family: "Orbitron", sans-serif;
+    font-size: 11px;
+}
+
+.texto-opcion {
+    flex: 1;
+}
+
+#botonSiguientePregunta,
+#reiniciarCuestionario {
+    padding: 12px 20px;
+
+    border: 1px solid var(--azul);
+    border-radius: 6px;
+
+    color: var(--azul-claro);
+    background: rgba(0, 207, 255, 0.1);
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+}
+
+.resultado-cuestionario {
+    max-width: 730px;
+    margin: 25px auto;
+    padding: 30px;
+
+    border: 1px solid var(--violeta);
+    border-radius: var(--radio);
+
+    background: var(--panel);
+    text-align: center;
+}
+
+#calificacionFinal {
+    color: var(--azul);
+    font-family: "Orbitron", sans-serif;
+    font-size: 28px;
+}
+
+/* ==========================================================
+   29. ASISTENTE RATATOPO
+========================================================== */
+
+.asistente-ratatopo {
+    position: fixed;
+    right: 22px;
+    bottom: 20px;
+    z-index: 1000;
+}
+
+.boton-ratatopo {
+    display: grid;
+    place-items: center;
+
+    width: 65px;
+    height: 65px;
+
+    border: 2px solid var(--azul);
+    border-radius: 50%;
+
+    color: white;
+    background:
+        radial-gradient(
+            circle at 40% 30%,
+            #244e86,
+            #0a1736 75%
+        );
+
+    box-shadow:
+        0 0 0 5px rgba(0, 207, 255, 0.07),
+        0 0 23px rgba(0, 207, 255, 0.35);
+
+    font-size: 30px;
+    transition: transform var(--transicion);
+}
+
+.boton-ratatopo:hover {
+    transform: scale(1.08);
+}
+
+.personaje-ratatopo {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.ventana-ratatopo {
+    position: absolute;
+    right: 0;
+    bottom: 82px;
+
+    width: min(350px, calc(100vw - 30px));
+    max-height: 70vh;
+    overflow-y: auto;
+
+    border: 1px solid var(--azul);
+    border-radius: 12px;
+
+    background: rgba(7, 18, 41, 0.98);
+    box-shadow: 0 0 35px rgba(0, 207, 255, 0.22);
+}
+
+.encabezado-ratatopo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+
+    padding: 15px;
+    border-bottom: 1px solid var(--borde);
+
+    color: var(--azul);
+    font-family: "Orbitron", sans-serif;
+    font-size: 12px;
+}
+
+#cerrarRatatopo {
+    width: 29px;
+    height: 29px;
+
+    border: 1px solid var(--borde);
+    border-radius: 5px;
+
+    color: white;
+    background: var(--panel-2);
+}
+
+.mensaje-ratatopo {
+    padding: 17px;
+    color: var(--texto);
+    font-size: 15px;
+}
+
+.opciones-ratatopo {
+    display: grid;
+    gap: 9px;
+    padding: 0 15px 15px;
+}
+
+.opciones-ratatopo button {
+    padding: 11px;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    color: var(--azul-claro);
+    background: var(--panel);
+    text-align: left;
+    font-size: 13px;
+}
+
+/* ==========================================================
+   30. FUENTES GENERALES Y PIE DE PÁGINA
+========================================================== */
+
+.fuentes-generales {
+    width: min(calc(100% - 40px), 1080px);
+    margin: 80px auto 0;
+    padding: 40px 20px 60px;
+
+    border-top: 1px solid var(--borde);
+    text-align: center;
+}
+
+.fuentes-generales h2,
+.fuentes-generales h3 {
+    font-size: 19px;
+}
+
+.fuentes-generales > p {
+    max-width: 650px;
+    margin: 0 auto 20px;
+    font-size: 14px;
+}
+
+.lista-fuentes-generales {
+    justify-content: center;
+    max-width: 780px;
+    margin: 20px auto;
+}
+
+.pie-museo {
+    width: 100%;
+    padding: 28px 20px;
+
+    border-top: 1px solid var(--borde);
+    background: rgba(4, 10, 23, 0.9);
+
+    text-align: center;
+}
+
+.pie-museo h3,
+.pie-museo strong {
+    color: var(--azul);
+    font-family: "Orbitron", sans-serif;
+    font-size: 13px;
+}
+
+.pie-museo p {
+    margin: 5px 0;
+    color: var(--apagado);
+    font-size: 11px;
+}
+
+/* ==========================================================
+   31. SELECTOR DE IDIOMAS
+   Compatible con selectores añadidos por JavaScript.
+========================================================== */
+
+#rt-ultra-idiomas,
+.selector-idiomas,
+.selector-idioma,
+.language-switcher {
+    position: fixed;
+    top: 13px;
+    right: 16px;
+    z-index: 3000;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 5px;
+
+    border: 1px solid var(--azul);
+    border-radius: 9px;
+
+    background: rgba(5, 17, 37, 0.96);
+    box-shadow: 0 0 16px rgba(0, 207, 255, 0.16);
+    backdrop-filter: blur(12px);
+}
+
+#rt-ultra-idiomas button,
+.selector-idiomas button,
+.selector-idioma button,
+.language-switcher button {
+    min-height: 28px;
+    padding: 6px 11px;
+
+    border: 0;
+    border-radius: 6px;
+
+    color: var(--texto);
+    background: transparent;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+#rt-ultra-idiomas button:hover,
+#rt-ultra-idiomas button.activo,
+#rt-ultra-idiomas button.active,
+#rt-ultra-idiomas button[aria-pressed="true"],
+.selector-idiomas button.activo,
+.selector-idioma button.activo,
+.language-switcher button.active {
+    color: #001322;
+    background: var(--azul);
+}
+
+/* ==========================================================
+   32. BOTONES FLOTANTES EXTRA
+========================================================== */
+
+.boton-sonido-espacial {
+    position: fixed;
+    left: 15px;
+    bottom: 15px;
+    z-index: 2000;
+
+    padding: 9px 12px;
+
+    border: 1px solid var(--azul);
+    border-radius: 6px;
+
+    color: var(--azul-claro);
+    background: rgba(5, 15, 35, 0.95);
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+}
+
+/* ==========================================================
+   33. BARRA DE DESPLAZAMIENTO
+========================================================== */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050b1b;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 2px solid #050b1b;
+    border-radius: 20px;
+    background: #344766;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #527aa4;
+}
+
+/* ==========================================================
+   34. EFECTOS DE MOVIMIENTO
+========================================================== */
+
+.tarjeta-mundo,
+.tarjeta-objeto,
+.paso-exploracion,
+.tarjeta-fotografia,
+.evento-tiempo {
+    will-change: auto;
+}
+
+@keyframes pulsoNeon {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 207, 255, 0.12);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(0, 207, 255, 0.3);
+    }
+}
+
+@keyframes entradaSuave {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================
+   35. RESPONSIVE — TABLETS
+========================================================== */
+
+@media (max-width: 900px) {
+
+    :root {
+        --ancho: 760px;
+    }
+
+    .encabezado-museo {
+        padding: 12px 20px;
+    }
+
+    .rejilla-objetos,
+    .rejilla-galeria,
+    .lista-eventos-tiempo,
+    .rejilla-inventario {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contenido-detalle {
+        grid-template-columns: 1fr;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .modelo-objeto {
+        max-width: 520px;
+        width: 100%;
+        margin: auto;
+    }
+
+    .pasos-exploracion {
+        gap: 12px;
+    }
+
+    .paso-exploracion {
+        padding: 18px;
+    }
+}
+
+/* ==========================================================
+   36. RESPONSIVE — TELÉFONOS
+========================================================== */
+
+@media (max-width: 600px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    #museo > section:not(#progresoExploracion) {
+        width: min(calc(100% - 24px), 500px);
+    }
+
+    .encabezado-museo {
+        min-height: 55px;
+        padding: 12px;
+    }
+
+    .logo-museo {
+        font-size: 9px;
+    }
+
+    .logo-icono {
+        font-size: 18px;
+    }
+
+    .estado-archivo {
+        display: none;
+    }
+
+    .navegacion-museo {
+        gap: 5px;
+        padding: 10px 5px;
+    }
+
+    .navegacion-museo button {
+        padding: 8px;
+        font-size: 8px;
+    }
+
+    .bienvenida-museo {
+        width: calc(100% - 28px);
+        margin-top: 35px;
+    }
+
+    .bienvenida-museo h2 {
+        font-size: 23px;
+    }
+
+    .bienvenida-museo > p:last-child {
+        font-size: 14px;
+    }
+
+    .progreso-exploracion {
+        width: calc(100% - 28px);
+        padding: 17px;
+    }
+
+    .tarjetas-mundos,
+    .pasos-exploracion {
+        grid-template-columns: 1fr;
+        max-width: 430px;
+    }
+
+    .imagen-mundo {
+        height: 215px;
+    }
+
+    .representacion-luna,
+    .representacion-marte {
+        width: 150px;
+        height: 150px;
+    }
+
+    .contenido-tarjeta p {
+        min-height: 0;
+    }
+
+    .introduccion-historias {
+        margin-top: 65px;
+    }
+
+    .paso-exploracion {
+        min-height: auto;
+    }
+
+    .contenedor-planeta {
+        height: 310px;
+    }
+
+    .informacion-visor {
+        font-size: 8px;
+    }
+
+    .rejilla-objetos,
+    .rejilla-galeria,
+    .lista-eventos-tiempo,
+    .rejilla-inventario {
+        grid-template-columns: 1fr;
+        max-width: 430px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .imagen-tarjeta-objeto {
+        height: 210px;
+    }
+
+    .datos-objeto {
+        grid-template-columns: 1fr;
+    }
+
+    .rejilla-vinetas {
+        grid-template-columns: 1fr;
+    }
+
+    .portada-comic {
+        padding: 26px 15px;
+    }
+
+    .panel-cuestionario {
+        padding: 19px;
+    }
+
+    .visor-objeto {
+        min-height: 220px;
+    }
+
+    .asistente-ratatopo {
+        right: 14px;
+        bottom: 15px;
+    }
+
+    .boton-ratatopo {
+        width: 55px;
+        height: 55px;
+        font-size: 26px;
+    }
+
+    .ventana-ratatopo {
+        bottom: 70px;
+    }
+
+    #rt-ultra-idiomas,
+    .selector-idiomas,
+    .selector-idioma,
+    .language-switcher {
+        top: 8px;
+        right: 8px;
+    }
+
+    #rt-ultra-idiomas button,
+    .selector-idiomas button,
+    .selector-idioma button,
+    .language-switcher button {
+        padding: 5px 7px;
+        font-size: 8px;
+    }
+
+    .interfaz-nave {
+        display: none;
+    }
+
+    .fuentes-generales {
+        margin-top: 50px;
+        padding: 30px 5px 50px;
+    }
+}
+
+/* ==========================================================
+   37. PANTALLAS MUY PEQUEÑAS
+========================================================== */
+
+@media (max-width: 380px) {
+
+    .navegacion-museo button {
+        font-size: 7px;
+        padding: 7px 5px;
+    }
+
+    .titulo-seccion h2,
+    .titulo-seccion h3 {
+        font-size: 19px;
+    }
+
+    .controles-planeta button {
+        padding: 7px 9px;
+        font-size: 9px;
+    }
+
+    .contenedor-planeta {
+        height: 260px;
+    }
+
+    .encabezado-progreso {
+        font-size: 9px;
+    }
+}
+
+/* ==========================================================
+   38. ACCESIBILIDAD Y MOVIMIENTO REDUCIDO
+========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================================
+   39. PROTECCIÓN DE VISIBILIDAD
+
+   IMPORTANTE:
+   JavaScript controla qué pantalla y sección
+   debe mostrarse. CSS no debe mostrar elementos
+   que tengan el atributo hidden.
+========================================================== */
+
+.pantalla:not(.activa) {
+    display: none;
+}
+
+.pantalla.activa {
+    display: block;
+}
+
+#portada.activa,
+#hiperespacio.activa {
+    display: flex;
+}
+
+[hidden],
+.pantalla[hidden],
+section[hidden],
+div[hidden] {
+    display: none !important;
+}
+
+/* ==========================================================
+   FIN DE STYLE.CSS
+   ARCHIVO DE LOS OLVIDADOS
+   LOS RATATOPOS MARCIANOS
+========================================================== */
+
+/* ==========================================================
+   CORRECCIÓN DEL ASISTENTE RATATOPO
+   ARCHIVO DE LOS OLVIDADOS
+
+   PEGAR AL FINAL DE STYLE.CSS
+
+   Objetivo:
+   - Ratatopo completo en la esquina inferior derecha
+   - Botón circular con brillo azul
+   - Texto "¿NECESITAS AYUDA?"
+   - Ventana flotante encima del ratoncito
+   - Sin cortes en los bordes
+   - Compatible con celular y computadora
+========================================================== */
+
+
+/* ----------------------------------------------------------
+   1. CONTENEDOR FLOTANTE
+---------------------------------------------------------- */
+
+#asistenteRatatopo,
+.asistente-ratatopo {
+
+    position: fixed !important;
+
+    top: auto !important;
+    left: auto !important;
+
+    right: 28px !important;
+    bottom: 22px !important;
+
+    width: 92px !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+
+    overflow: visible !important;
+
+    transform: none !important;
+
+    z-index: 99999 !important;
+
+    background: transparent !important;
+    border: none !important;
+
+    pointer-events: auto !important;
+}
+
+
+/* ----------------------------------------------------------
+   2. BOTÓN CIRCULAR DEL RATONCITO
+---------------------------------------------------------- */
+
+#botonRatatopo,
+.boton-ratatopo {
+
+    position: relative !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    flex-shrink: 0 !important;
+
+    width: 72px !important;
+    height: 72px !important;
+
+    min-width: 72px !important;
+    min-height: 72px !important;
+
+    margin: 0 auto !important;
+    padding: 0 !important;
+
+    border: 2px solid #00d9ff !important;
+    border-radius: 50% !important;
+
+    background:
+        radial-gradient(
+            circle at 35% 28%,
+            #335d8d 0%,
+            #19365c 38%,
+            #0a1733 75%,
+            #061024 100%
+        ) !important;
+
+    box-shadow:
+        0 0 0 5px rgba(0, 217, 255, 0.07),
+        0 0 15px rgba(0, 217, 255, 0.28),
+        inset 0 0 14px rgba(90, 185, 255, 0.18) !important;
+
+    color: white !important;
+
+    cursor: pointer !important;
+
+    overflow: hidden !important;
+
+    transform: none;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease !important;
+
+    z-index: 2;
+}
+
+#botonRatatopo:hover {
+
+    transform: scale(1.08) !important;
+
+    box-shadow:
+        0 0 0 6px rgba(0, 217, 255, 0.12),
+        0 0 26px rgba(0, 217, 255, 0.55),
+        inset 0 0 16px rgba(90, 185, 255, 0.25) !important;
+}
+
+
+/* ----------------------------------------------------------
+   3. RATATOPO DENTRO DEL BOTÓN
+---------------------------------------------------------- */
+
+#personajeRatatopo,
+.personaje-ratatopo {
+
+    position: relative !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    font-size: 34px !important;
+    line-height: 1 !important;
+
+    transform: none !important;
+}
+
+#personajeRatatopo img,
+#botonRatatopo img {
+
+    display: block !important;
+
+    width: 88% !important;
+    height: 88% !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    object-fit: contain !important;
+
+    border-radius: 50%;
+
+    margin: auto !important;
+}
+
+
+/* ----------------------------------------------------------
+   4. TEXTO "¿NECESITAS AYUDA?"
+---------------------------------------------------------- */
+
+#asistenteRatatopo .texto-ayuda,
+#asistenteRatatopo .etiqueta-ayuda,
+.asistente-ratatopo .texto-ayuda,
+.asistente-ratatopo .etiqueta-ayuda {
+
+    display: block !important;
+
+    width: max-content !important;
+    max-width: 150px !important;
+
+    margin-top: 9px !important;
+
+    color: #40d9ff !important;
+
+    font-family: "Orbitron", sans-serif !important;
+
+    font-size: 9px !important;
+    font-weight: 600 !important;
+
+    line-height: 1.5 !important;
+    letter-spacing: 0.3px !important;
+
+    text-align: center !important;
+    white-space: nowrap !important;
+
+    text-shadow: 0 0 8px rgba(0, 217, 255, 0.45);
+}
+
+
+/* ----------------------------------------------------------
+   5. VENTANA FLOTANTE DE RATATOPO
+---------------------------------------------------------- */
+
+#ventanaRatatopo,
+.ventana-ratatopo {
+
+    position: absolute !important;
+
+    top: auto !important;
+    left: auto !important;
+
+    right: 0 !important;
+    bottom: 108px !important;
+
+    width: 310px !important;
+    max-width: calc(100vw - 36px) !important;
+
+    height: auto !important;
+    max-height: min(72vh, 540px) !important;
+
+    margin: 0 !important;
+    padding: 16px !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    border: 1px solid #1687b6 !important;
+    border-radius: 12px !important;
+
+    background: #061024 !important;
+
+    box-shadow:
+        0 12px 45px rgba(0, 0, 0, 0.55),
+        0 0 20px rgba(0, 190, 255, 0.09) !important;
+
+    color: #d5e0f5 !important;
+
+    z-index: 10 !important;
+
+    transform: none !important;
+}
+
+
+/* ----------------------------------------------------------
+   6. RESPETAR LA APERTURA Y EL CIERRE DEL JAVASCRIPT
+---------------------------------------------------------- */
+
+#ventanaRatatopo[hidden] {
+    display: none !important;
+}
+
+#ventanaRatatopo:not([hidden]) {
+    display: block !important;
+}
+
+
+/* ----------------------------------------------------------
+   7. ENCABEZADO DE LA VENTANA
+---------------------------------------------------------- */
+
+#ventanaRatatopo .encabezado-ratatopo,
+#ventanaRatatopo .cabecera-ratatopo {
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    gap: 12px !important;
+
+    padding: 0 0 15px !important;
+
+    margin-bottom: 15px !important;
+
+    border-bottom: 1px solid #15567e !important;
+
+    color: #33d8ff !important;
+
+    font-family: "Orbitron", sans-serif !important;
+
+    font-size: 11px !important;
+    font-weight: 700 !important;
+}
+
+
+/* ----------------------------------------------------------
+   8. BOTÓN DE CERRAR
+---------------------------------------------------------- */
+
+#cerrarRatatopo {
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 28px !important;
+    height: 28px !important;
+
+    flex-shrink: 0 !important;
+
+    padding: 0 !important;
+
+    border: none !important;
+
+    color: white !important;
+    background: transparent !important;
+
+    font-size: 20px !important;
+    font-weight: 700 !important;
+
+    cursor: pointer !important;
+}
+
+
+/* ----------------------------------------------------------
+   9. MENSAJES DE RATATOPO
+---------------------------------------------------------- */
+
+#mensajeRatatopo,
+#ventanaRatatopo .mensaje-ratatopo {
+
+    margin: 0 0 16px !important;
+
+    padding: 0 !important;
+
+    color: #a9b9d8 !important;
+
+    font-family: "Rajdhani", sans-serif !important;
+
+    font-size: 15px !important;
+    font-weight: 500 !important;
+
+    line-height: 1.5 !important;
+
+    overflow-wrap: break-word !important;
+}
+
+
+/* ----------------------------------------------------------
+   10. BOTONES DE AYUDA COMO EN TU SEGUNDA IMAGEN
+---------------------------------------------------------- */
+
+#ventanaRatatopo .opciones-ratatopo {
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 9px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#ventanaRatatopo .opciones-ratatopo button,
+#ventanaRatatopo [data-ayuda] {
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    width: 100% !important;
+    min-height: 34px !important;
+
+    padding: 8px 10px !important;
+
+    border: 1px solid #1778a9 !important;
+    border-radius: 5px !important;
+
+    color: #38d4ff !important;
+    background: #071a35 !important;
+
+    font-family: "Orbitron", sans-serif !important;
+
+    font-size: 9px !important;
+    font-weight: 500 !important;
+
+    line-height: 1.5 !important;
+
+    text-align: left !important;
+
+    white-space: normal !important;
+
+    cursor: pointer !important;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease !important;
+}
+
+#ventanaRatatopo .opciones-ratatopo button:hover,
+#ventanaRatatopo [data-ayuda]:hover {
+
+    border-color: #00d9ff !important;
+
+    background: #10365b !important;
+
+    color: white !important;
+}
+
+
+/* ----------------------------------------------------------
+   11. EVITAR QUE OTROS ESTILOS RECORTEN EL ASISTENTE
+---------------------------------------------------------- */
+
+body,
+html {
+    overflow-x: clip;
+}
+
+#asistenteRatatopo *,
+.asistente-ratatopo * {
+    box-sizing: border-box;
+}
+
+
+/* ----------------------------------------------------------
+   12. ADAPTACIÓN PARA CELULARES
+---------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+    #asistenteRatatopo,
+    .asistente-ratatopo {
+
+        right: 16px !important;
+        bottom: 18px !important;
+
+        width: 85px !important;
+    }
+
+    #botonRatatopo,
+    .boton-ratatopo {
+
+        width: 66px !important;
+        height: 66px !important;
+
+        min-width: 66px !important;
+        min-height: 66px !important;
+    }
+
+    #personajeRatatopo,
+    .personaje-ratatopo {
+
+        font-size: 31px !important;
+    }
+
+    #ventanaRatatopo,
+    .ventana-ratatopo {
+
+        right: 0 !important;
+        bottom: 100px !important;
+
+        width: 300px !important;
+
+        max-width: calc(100vw - 30px) !important;
+        max-height: 65vh !important;
+
+        padding: 14px !important;
+    }
+}
+
+
+/* ----------------------------------------------------------
+   13. PANTALLAS MUY PEQUEÑAS
+---------------------------------------------------------- */
+
+@media (max-width: 380px) {
+
+    #asistenteRatatopo,
+    .asistente-ratatopo {
+
+        right: 12px !important;
+        bottom: 14px !important;
+    }
+
+    #ventanaRatatopo,
+    .ventana-ratatopo {
+
+        right: 0 !important;
+
+        width: 275px !important;
+
+        max-width: calc(100vw - 24px) !important;
+
+        bottom: 96px !important;
+    }
+}
+
+/* ==========================================================
+   FIN DE LA CORRECCIÓN RATATOPO
+========================================================== */
+
+/* ==========================================================
+   RATATOPO — REPARACIÓN DE POSICIÓN
+   PEGAR AL FINAL DE STYLE.CSS
+========================================================== */
+
+/* Contenedor principal */
+body #asistenteRatatopo {
+    position: fixed !important;
+
+    inset: auto 22px 18px auto !important;
+
+    top: auto !important;
+    left: auto !important;
+    right: 22px !important;
+    bottom: 18px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+
+    width: 115px !important;
+    min-width: 115px !important;
+    max-width: 115px !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    overflow: visible !important;
+
+    transform: none !important;
+    translate: none !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    background: transparent !important;
+    border: 0 !important;
+
+    z-index: 2147483000 !important;
+}
+
+/* Botón del ratoncito */
+body #botonRatatopo {
+    position: relative !important;
+
+    inset: auto !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 72px !important;
+    height: 72px !important;
+
+    min-width: 72px !important;
+    min-height: 72px !important;
+
+    max-width: 72px !important;
+    max-height: 72px !important;
+
+    margin: 0 auto !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    border-radius: 50% !important;
+    border: 2px solid #40dcff !important;
+
+    background: radial-gradient(
+        circle at 40% 30%,
+        #37618a,
+        #142b4e 55%,
+        #081326
+    ) !important;
+
+    box-shadow:
+        0 0 0 5px rgba(64, 220, 255, 0.08),
+        0 0 18px rgba(64, 220, 255, 0.35) !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    transform: none !important;
+
+    cursor: pointer !important;
+    z-index: 2 !important;
+}
+
+/* Personaje */
+body #personajeRatatopo {
+    position: relative !important;
+
+    inset: auto !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-size: 38px !important;
+    line-height: 1 !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    transform: none !important;
+}
+
+/* Imagen del ratoncito, si existe */
+body #personajeRatatopo img,
+body #botonRatatopo img {
+    display: block !important;
+
+    width: 88% !important;
+    height: 88% !important;
+
+    object-fit: contain !important;
+
+    margin: auto !important;
+}
+
+/* Texto debajo del botón */
+body #asistenteRatatopo > span,
+body #asistenteRatatopo > p,
+body #asistenteRatatopo > small,
+body #asistenteRatatopo > .texto-ayuda,
+body #asistenteRatatopo > .etiqueta-ayuda {
+    position: relative !important;
+
+    inset: auto !important;
+
+    display: block !important;
+
+    width: max-content !important;
+    max-width: 150px !important;
+
+    margin: 9px auto 0 !important;
+
+    color: #43dcff !important;
+
+    font-family: "Orbitron", sans-serif !important;
+    font-size: 9px !important;
+    line-height: 1.4 !important;
+
+    text-align: center !important;
+    white-space: nowrap !important;
+
+    transform: none !important;
+}
+
+/* Ventana de ayuda */
+body #ventanaRatatopo {
+    position: absolute !important;
+
+    top: auto !important;
+    left: auto !important;
+
+    right: 0 !important;
+    bottom: 112px !important;
+
+    width: 310px !important;
+    max-width: calc(100vw - 32px) !important;
+
+    height: auto !important;
+    max-height: 70vh !important;
+
+    padding: 16px !important;
+    margin: 0 !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    border: 1px solid #147ca6 !important;
+    border-radius: 12px !important;
+
+    background: #061024 !important;
+
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6) !important;
+
+    transform: none !important;
+    z-index: 5 !important;
+}
+
+/* Ocultar correctamente al cerrar */
+body #ventanaRatatopo[hidden] {
+    display: none !important;
+}
+
+/* Mostrar correctamente al abrir */
+body #ventanaRatatopo:not([hidden]) {
+    display: block !important;
+}
+
+/* Opciones del asistente */
+body #ventanaRatatopo .opciones-ratatopo {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+
+body #ventanaRatatopo .opciones-ratatopo button {
+    width: 100% !important;
+    min-height: 34px !important;
+
+    padding: 9px 10px !important;
+
+    border: 1px solid #1679a5 !important;
+    border-radius: 5px !important;
+
+    background: #081b35 !important;
+    color: #4bdcff !important;
+
+    font-family: "Orbitron", sans-serif !important;
+    font-size: 9px !important;
+
+    text-align: left !important;
+    cursor: pointer !important;
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+    body #asistenteRatatopo {
+        right: 15px !important;
+        bottom: 15px !important;
+    }
+
+    body #ventanaRatatopo {
+        width: 290px !important;
+        max-width: calc(100vw - 30px) !important;
+        bottom: 105px !important;
+    }
+}
+
+/* ==========================================================
+   FIN DE LA REPARACIÓN
+========================================================== */
+
+/* ==========================================================
+   RATATOPO — REPARACIÓN VISUAL DEFINITIVA
+   ARCHIVO DE LOS OLVIDADOS
+   PEGAR AL FINAL DE style.css
+========================================================== */
+
+/* Contenedor fijo, siempre visible */
+#asistenteRatatopo {
+    position: fixed !important;
+    right: 24px !important;
+    bottom: 14px !important;
+
+    width: 330px !important;
+    max-width: calc(100vw - 24px) !important;
+    height: auto !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+
+    overflow: visible !important;
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    z-index: 2147483000 !important;
+    pointer-events: none;
+}
+
+/* Botón del personaje */
+#botonRatatopo {
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+
+    width: 110px !important;
+    min-width: 110px !important;
+    height: 112px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 7px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    cursor: pointer !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
+
+    color: #40dcff !important;
+    font-family: "Orbitron", sans-serif !important;
+    font-size: 8px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+}
+
+/* Círculo azul con brillo */
+#personajeRatatopo {
+    position: relative !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    flex: 0 0 84px !important;
+    width: 84px !important;
+    height: 84px !important;
+
+    min-width: 84px !important;
+    min-height: 84px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 2px solid #35dfff !important;
+    border-radius: 50% !important;
+
+    background:
+        radial-gradient(
+            circle at 45% 35%,
+            #3e6888 0%,
+            #172c4a 45%,
+            #08152e 75%,
+            #050d20 100%
+        ) !important;
+
+    box-shadow:
+        0 0 0 5px rgba(15, 40, 73, 0.8),
+        0 0 20px rgba(31, 205, 255, 0.35),
+        inset 0 0 16px rgba(100, 195, 255, 0.3) !important;
+
+    overflow: hidden !important;
+}
+
+/* Ratatopo creado con emoji, sin archivo de imagen */
+#personajeRatatopo::before {
+    content: "🐭" !important;
+
+    display: block !important;
+    position: relative !important;
+
+    font-family: "Apple Color Emoji",
+                 "Segoe UI Emoji",
+                 "Noto Color Emoji",
+                 sans-serif !important;
+
+    font-size: 47px !important;
+    line-height: 1 !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    transform: translateY(3px) !important;
+    filter: drop-shadow(0 3px 5px rgba(0,0,0,.4));
+
+    z-index: 2 !important;
+}
+
+/* Etiqueta ¿NECESITAS AYUDA? */
+#botonRatatopo .texto-ratatopo,
+#botonRatatopo .etiqueta-ratatopo,
+#botonRatatopo > span:not(#personajeRatatopo),
+#botonRatatopo > small {
+    display: block !important;
+    position: static !important;
+
+    width: 150px !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: #42dbff !important;
+    font-size: 8px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+
+    overflow: visible !important;
+    transform: none !important;
+}
+
+/* Ventana emergente */
+#ventanaRatatopo {
+    position: relative !important;
+    inset: auto !important;
+
+    width: 328px !important;
+    max-width: calc(100vw - 28px) !important;
+    max-height: calc(100dvh - 145px) !important;
+
+    margin: 0 0 12px 0 !important;
+    padding: 18px !important;
+
+    display: block;
+    box-sizing: border-box !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    transform: none !important;
+
+    background: #061126 !important;
+    border: 2px solid #17617f !important;
+    border-radius: 13px !important;
+
+    box-shadow:
+        0 0 30px rgba(0, 205, 255, 0.10),
+        0 15px 45px rgba(0, 0, 0, 0.45) !important;
+
+    color: #e9efff !important;
+    pointer-events: auto !important;
+}
+
+/* Cerrar realmente la ventana */
+#ventanaRatatopo[hidden] {
+    display: none !important;
+}
+
+/* Títulos del asistente */
+#ventanaRatatopo h2,
+#ventanaRatatopo h3,
+#ventanaRatatopo .titulo-ratatopo {
+    color: #43dcff !important;
+    font-family: "Orbitron", sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+}
+
+/* Texto del asistente */
+#ventanaRatatopo p,
+#mensajeRatatopo {
+    color: #a6aec9 !important;
+    font-family: "Rajdhani", sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+    overflow-wrap: break-word !important;
+}
+
+/* Opciones verticales */
+#ventanaRatatopo .opciones-ratatopo {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+
+    width: 100% !important;
+    margin-top: 14px !important;
+}
+
+/* Botones como los de la fotografía */
+#ventanaRatatopo .opciones-ratatopo button,
+#ventanaRatatopo button[data-ayuda] {
+    display: flex !important;
+    align-items: center !important;
+
+    width: 100% !important;
+    min-height: 39px !important;
+
+    padding: 9px 12px !important;
+    margin: 0 !important;
+
+    box-sizing: border-box !important;
+
+    color: #44dfff !important;
+    background: #081b34 !important;
+
+    border: 2px solid #165c7d !important;
+    border-radius: 6px !important;
+
+    font-family: "Orbitron", sans-serif !important;
+    font-size: 9px !important;
+    font-weight: 500 !important;
+
+    text-align: left !important;
+    white-space: normal !important;
+
+    cursor: pointer !important;
+    transition: 0.2s ease !important;
+}
+
+#ventanaRatatopo .opciones-ratatopo button:hover,
+#ventanaRatatopo button[data-ayuda]:hover {
+    background: #103052 !important;
+    border-color: #39dfff !important;
+    box-shadow: 0 0 12px rgba(0, 205, 255, .2) !important;
+}
+
+/* Botón X */
+#cerrarRatatopo {
+    cursor: pointer !important;
+    color: #ffffff !important;
+    background: transparent !important;
+    border: none !important;
+    font-size: 18px !important;
+}
+
+/* Evitar que el museo recorte el asistente */
+body,
+html {
+    overflow-x: clip;
+}
+
+@media (max-width: 600px) {
+    #asistenteRatatopo {
+        right: 14px !important;
+        bottom: 12px !important;
+        width: min(328px, calc(100vw - 28px)) !important;
+    }
+
+    #ventanaRatatopo {
+        width: 100% !important;
+        padding: 15px !important;
+    }
+
+    #botonRatatopo {
+        width: 110px !important;
+    }
+}
